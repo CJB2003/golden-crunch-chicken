@@ -1,6 +1,6 @@
 package com.yearupunited.goldencrunchchicken.cli;
 
-public class BaseApp {
+public class CliBaseApp {
     public static void main(String[] args) {
 
     }
