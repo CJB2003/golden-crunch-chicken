@@ -28,7 +28,7 @@ public class Drink {
     /// Can be a coke, sprite, water, etc
     private String drinkFlavor;
 
-    /// Smalls are $2.00, Medium $2.50, and Large $3.00
+    /// Smalls are $1.99, Medium $2.50, and Large $2.99
     @Column (nullable = false)
     private BigDecimal drinkPrice;
 

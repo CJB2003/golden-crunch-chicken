@@ -20,9 +20,11 @@ public class Sides {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long sideId;
 
+    /// Name of the side
     @Column (nullable = false)
     private String sideName;
 
+    /// Price of side
     @Column (nullable = false)
     private BigDecimal sidePrice;
 

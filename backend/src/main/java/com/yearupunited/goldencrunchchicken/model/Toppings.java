@@ -32,7 +32,7 @@ public class Toppings {
     @Column (nullable = false)
     private ToppingType toppingType;
 
-    /// Using BigDecimal instead of double here for a more accurate calculation of costs
+    /// Using BigDecimal instead of double in my code for a more accurate calculation of costs
     private BigDecimal priceWings;
     private BigDecimal Drumsticks;
     private BigDecimal priceBoneless;

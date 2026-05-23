@@ -33,6 +33,13 @@ public class Order {
     @Column (nullable = false)
     private OrderStatus orderStatus;
 
+    /**
+     * JSON serializes chickenItems. When orders are made, cascade ensures that everything part of that
+     * order saves as well (the chicken, drink, sides, etc) or if the order gets deleted, everything follows.
+     * OrphanRemoval just deletes items without a parent from the DB. If a drink gets removed from order,
+     * it is no longer part of the order therefore it is removed through orphanRemoval. Same pattern for
+     * drinks and sides
+      */
     @OneToMany (mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Chicken> chickenItems = new ArrayList<>();
@@ -45,5 +52,9 @@ public class Order {
     @JsonManagedReference
     private List<Sides> sides = new ArrayList<>();
 
-    private BigDecimal totalPrice;
+    /**
+     * I have a price variable in here and Receipt because this is a flexible price that can be changed
+     * depending on what is added or removed from order, while receipt is the final total that cannot be changed.
+      */
+    private BigDecimal calculatedPrice;
 }
