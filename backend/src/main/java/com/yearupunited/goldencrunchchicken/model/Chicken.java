@@ -3,6 +3,7 @@ package com.yearupunited.goldencrunchchicken.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.yearupunited.goldencrunchchicken.model.enums.ChickenCut;
 import com.yearupunited.goldencrunchchicken.model.enums.PrepStyle;
+import com.yearupunited.goldencrunchchicken.model.enums.ToppingType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -55,6 +56,17 @@ public class Chicken {
 
     /// Returns a line that displays type of cut, prep style, and whether the user chose to have sauce on the side or tossed with the chicken
     public String customizedChicken() {
-        return "Type of cut: " + chickenCut + " | " + "Prep style: " + prepStyle + " | " + (tossedInSauce ? "[Tossed in sauce]" : "[Sauce on side]");
+
+        StringBuilder toppingStuff = new StringBuilder();
+        for (Toppings topping : toppings) {
+
+            toppingStuff.append(topping.getToppingName());
+            if (topping.getToppingType() == ToppingType.PREMIUM) {
+                toppingStuff.append(" [PREMIUM]");
+            }
+            toppingStuff.append(", ");
+        }
+        return "Type of cut: " + chickenCut + " | Toppings: " + toppingStuff + " | " + "Prep style: " + prepStyle + " | "
+                + (tossedInSauce ? "[Tossed in sauce]" : "[Sauce on side]");
     }
 }

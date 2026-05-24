@@ -1,4 +1,4 @@
 package com.yearupunited.goldencrunchchicken.cli.screens;
 
-public class DisplayHomeScreen {
+public class CheckoutScreen {
 }

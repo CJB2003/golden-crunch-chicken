@@ -2,6 +2,7 @@ package com.yearupunited.goldencrunchchicken.service;
 
 import com.yearupunited.goldencrunchchicken.model.*;
 import com.yearupunited.goldencrunchchicken.model.enums.OrderStatus;
+import com.yearupunited.goldencrunchchicken.util.ReceiptWriter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -152,6 +153,45 @@ public class OrderService {
 
         order.setCalculatedPrice(calculateOrderPrice(id));
 
+        // Calling receiptWriter to write receipt as file
+        ReceiptWriter.writeToFile(receiptBuilder(order, calculateOrderPrice(id)), receipt.getFilename());
+
         return receipt;
+    }
+
+    public String receiptBuilder(Order order, BigDecimal totalPrice) {
+
+        StringBuilder receiptBuilder = new StringBuilder();
+
+        receiptBuilder
+                .append("Golden Crunch Chicken\n")
+                .append("----------------------\n")
+                .append(LocalDateTime.now()).append("\n");
+
+        for (Chicken chicken : order.getChickenItems()) {
+
+            receiptBuilder.append(chicken.customizedChicken()).append("\n");
+        }
+
+        for (Drink drink : order.getDrinks()) {
+
+            receiptBuilder
+                    .append(drink.getDrinkSize()).append(" ")
+                    .append(drink.getDrinkFlavor()).append(": ")
+                    .append(drink.getDrinkPrice()).append("\n");
+        }
+
+        for (Sides sides : order.getSides()) {
+
+            receiptBuilder
+                    .append(sides.getSideType()).append(" ")
+                    .append(sides.getSidePrice());
+        }
+        receiptBuilder
+                .append("Total: ")
+                .append(totalPrice)
+                .append("\n");
+
+        return receiptBuilder.toString();
     }
 }
