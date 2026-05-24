@@ -34,7 +34,7 @@ public class Toppings {
 
     /// Using BigDecimal instead of double in my code for a more accurate calculation of costs
     private BigDecimal priceWings;
-    private BigDecimal Drumsticks;
+    private BigDecimal priceDrumsticks;
     private BigDecimal priceBoneless;
     private BigDecimal priceWhole;
 }

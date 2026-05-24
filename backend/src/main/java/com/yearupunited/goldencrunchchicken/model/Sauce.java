@@ -19,7 +19,7 @@ public class Sauce {
     private Long sauceId;
 
     /// Rejects a null input, calls sauce type enum class
-    @Enumerated
+    @Enumerated (EnumType.STRING)
     @Column (nullable = false)
     private SauceType sauceType;
 }
