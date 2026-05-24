@@ -1,6 +1,7 @@
 package com.yearupunited.goldencrunchchicken.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.yearupunited.goldencrunchchicken.model.enums.SideType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,8 +22,9 @@ public class Sides {
     private Long sideId;
 
     /// Name of the side
+    @Enumerated(EnumType.STRING)
     @Column (nullable = false)
-    private String sideName;
+    private SideType sideType;
 
     /// Price of side
     @Column (nullable = false)
