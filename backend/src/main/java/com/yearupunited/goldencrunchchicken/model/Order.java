@@ -53,7 +53,7 @@ public class Order {
     private List<Sides> sides = new ArrayList<>();
 
     /**
-     * I have a price variable in here and Receipt because this is a flexible price that can be changed
+     * I have a price variable both here and Receipt because this is a flexible price that can be changed
      * depending on what is added or removed from order, while receipt is the final total that cannot be changed.
       */
     private BigDecimal calculatedPrice;

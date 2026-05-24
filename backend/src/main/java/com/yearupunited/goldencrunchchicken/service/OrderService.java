@@ -1,9 +1,10 @@
 package com.yearupunited.goldencrunchchicken.service;
 
 import com.yearupunited.goldencrunchchicken.model.Chicken;
+import com.yearupunited.goldencrunchchicken.model.Drink;
 import com.yearupunited.goldencrunchchicken.model.Order;
+import com.yearupunited.goldencrunchchicken.model.Sides;
 import com.yearupunited.goldencrunchchicken.model.enums.OrderStatus;
-import org.springframework.security.core.parameters.P;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -14,6 +15,12 @@ import java.util.Optional;
 public class OrderService {
 
     List<Order> orderList = new ArrayList<>();
+
+    private ChickenService chickenService;
+
+    public OrderService(ChickenService chickenService) {
+        this.chickenService = chickenService;
+    }
 
     /// Returns the order and adds it to orderList
     public Order orderCreation() {
@@ -60,7 +67,7 @@ public class OrderService {
         }
     }
 
-    /// Need to finish after chicken service
+    /// Calculates total price by adding price of chicken, drinks, and sides
     public BigDecimal calculateOrderPrice(Long id) {
 
         BigDecimal totalPrice = BigDecimal.ZERO;
@@ -68,7 +75,18 @@ public class OrderService {
 
         for (Chicken chicken : order.getChickenItems()) {
 
+            totalPrice = totalPrice.add(chickenService.calculatedChickenPrice(chicken));
         }
-        return null;
+
+        for (Drink drink : order.getDrinks()) {
+
+            totalPrice = totalPrice.add(drink.getDrinkPrice());
+        }
+
+        for (Sides sides : order.getSides()) {
+
+            totalPrice = totalPrice.add(sides.getSidePrice());
+        }
+        return totalPrice;
     }
 }
