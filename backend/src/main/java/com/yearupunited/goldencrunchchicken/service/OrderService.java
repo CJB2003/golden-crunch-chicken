@@ -1,13 +1,12 @@
 package com.yearupunited.goldencrunchchicken.service;
 
-import com.yearupunited.goldencrunchchicken.model.Chicken;
-import com.yearupunited.goldencrunchchicken.model.Drink;
-import com.yearupunited.goldencrunchchicken.model.Order;
-import com.yearupunited.goldencrunchchicken.model.Sides;
+import com.yearupunited.goldencrunchchicken.model.*;
 import com.yearupunited.goldencrunchchicken.model.enums.OrderStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +14,8 @@ import java.util.Optional;
 public class OrderService {
 
     List<Order> orderList = new ArrayList<>();
+
+    List<Receipt> receiptList = new ArrayList<>();
 
     private ChickenService chickenService;
 
@@ -88,5 +89,69 @@ public class OrderService {
             totalPrice = totalPrice.add(sides.getSidePrice());
         }
         return totalPrice;
+    }
+
+    /// Allows user to add additional chicken to order and updates the calculatedPrice
+    public Order addChickenToOrder(Long id, Chicken chicken) {
+
+        Order order = findById(id).orElseThrow();
+
+        order.getChickenItems().add(chicken);
+        order.setCalculatedPrice(calculateOrderPrice(id));
+
+        return order;
+    }
+
+    /// Allows user to add additional drinks to order
+    public Order addDrinkToOrder(Long id, Drink drink) {
+
+        Order order = findById(id).orElseThrow();
+
+        order.getDrinks().add(drink);
+        order.setCalculatedPrice(calculateOrderPrice(id));
+
+        return order;
+    }
+
+    /// Allows user to add additional sides to order
+    public Order addSideToOrder(Long id, Sides sides) {
+
+        Order order = findById(id).orElseThrow();
+
+        order.getSides().add(sides);
+        order.setCalculatedPrice(calculateOrderPrice(id));
+
+        return order;
+    }
+
+    /// Contains logic for receipt and validation for order, sets status of order to complete
+    public Receipt checkout(Long id) {
+
+        Order order = findById(id).orElseThrow();
+        Receipt receipt = new Receipt();
+
+        // Validation case for when user doesn't order chicken, need at least a drink or side
+        if (order.getChickenItems().isEmpty() && order.getDrinks().isEmpty() && order.getSides().isEmpty()) {
+
+            System.out.println("You need to have at least a drink or side in your order.");
+            return null;
+        }
+
+        order.setOrderStatus(OrderStatus.COMPLETED);
+
+        // Capstone format for filename
+        String fileDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss"));
+
+        receipt.setReceiptId((long) receiptList.size() + 1);
+        receipt.setOrder(order);
+        receipt.setFilename(fileDate + ".txt");
+        receipt.setReceiptDate(LocalDateTime.now());
+        receipt.setTotalPrice(calculateOrderPrice(id));
+
+        receiptList.add(receipt);
+
+        order.setCalculatedPrice(calculateOrderPrice(id));
+
+        return receipt;
     }
 }
