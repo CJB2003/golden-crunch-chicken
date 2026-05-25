@@ -166,7 +166,8 @@ public class OrderService {
         receiptBuilder
                 .append("Golden Crunch Chicken\n")
                 .append("----------------------\n")
-                .append(LocalDateTime.now()).append("\n");
+                .append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss")))
+                .append("\n");
 
         for (Chicken chicken : order.getChickenItems()) {
 
