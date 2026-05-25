@@ -26,7 +26,7 @@ public class HomeScreen {
                                     """
                     ))
             );
-            System.out.print(TextFormatter.gold("Selection: "));
+            System.out.print(TextFormatter.cyan("Selection: "));
             String userChoice = myScanner.nextLine();
 
             switch (userChoice) {

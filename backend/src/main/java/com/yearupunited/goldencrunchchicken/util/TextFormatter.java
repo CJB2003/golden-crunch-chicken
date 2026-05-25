@@ -6,6 +6,8 @@ public class TextFormatter {
     public static final String GREEN = "\u001B[32m";
     public static final String RED = "\u001B[31m";
     public static final String GOLD = "\u001B[93m";
+    public static final String WHITE = "\u001B[97m";
+    public static final String CYAN = "\u001B[96m";
 
     /// Made them static and final so I can pass them through multiple methods. Formats text bold
     private static final String bold = "\u001B[1m";
@@ -27,6 +29,14 @@ public class TextFormatter {
 
     public static String green(String text) {
         return GREEN + text + reset;
+    }
+
+    public static String cyan(String text) {
+        return CYAN + text + reset;
+    }
+
+    public static String white(String text) {
+        return WHITE + text + reset;
     }
 
     public static String colorForAmount(double amount) {

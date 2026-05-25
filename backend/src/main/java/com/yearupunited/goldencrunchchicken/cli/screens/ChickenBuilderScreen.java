@@ -57,33 +57,65 @@ public class ChickenBuilderScreen {
                         || [SOY GARLIC]     [GANGJEONG]     [GALBI]     [HONEY BUTTER] ||
                         ||         [KOREAN BBQ]      [BULGOGI]    [HOT SPICY]          ||
                         ||_____________________________________________________________||
-                        \n""")
+                        """)
                 )
         );
-        System.out.print(TextFormatter.gold("What cut of chicken would you like? "));
-        String userChickenCut = myScanner.nextLine().toUpperCase().trim();
 
         ChickenCut chickenCut = ChickenCut.WINGS;
 
-        switch (userChickenCut) {
-            case "WINGS" -> chickenCut = ChickenCut.WINGS;
-            case "DRUMSTICKS" -> chickenCut = ChickenCut.DRUMSTICKS;
-            case "BONELESS" -> chickenCut = ChickenCut.BONELESS;
-            case "WHOLE CHICKEN" -> chickenCut = ChickenCut.WHOLE_CHICKEN;
-            default -> System.out.println(TextFormatter.red("\nInvalid chicken cut. Try again."));
+        boolean validCut = false;
+
+        while (!validCut) {
+
+            System.out.print(TextFormatter.cyan("\nWhat cut of chicken would you like? "));
+            String userChickenCut = myScanner.nextLine().toUpperCase().trim();
+
+            switch (userChickenCut) {
+                case "WINGS" -> {
+                    chickenCut = ChickenCut.WINGS;
+                    validCut = true;
+                }
+                case "DRUMSTICKS" -> {
+                    chickenCut = ChickenCut.DRUMSTICKS;
+                    validCut = true;
+                }
+                case "BONELESS" -> {
+                    chickenCut = ChickenCut.BONELESS;
+                    validCut = true;
+                }
+                case "WHOLE CHICKEN" -> {
+                    chickenCut = ChickenCut.WHOLE_CHICKEN;
+                    validCut = true;
+                }
+                default -> System.out.println(TextFormatter.red("\nInvalid chicken cut. Try again."));
+            }
         }
         chicken.setChickenCut(chickenCut);
 
-        System.out.print(TextFormatter.gold("\nHow would you like your chicken prepped? "));
-        String userPrepStyle = myScanner.nextLine().toUpperCase().trim();
-
         PrepStyle prepStyle = PrepStyle.ORIGINAL_CRISPY;
 
-        switch (userPrepStyle) {
-            case "ORIGINAL CRISPY" -> prepStyle = PrepStyle.ORIGINAL_CRISPY;
-            case "EXTRA CRISPY" -> prepStyle = PrepStyle.EXTRA_CRISPY;
-            case "GRILLED" -> prepStyle = PrepStyle.GRILLED;
-            default -> System.out.println(TextFormatter.red("\nNot a valid prep style. Try again."));
+        boolean validPrep = false;
+
+        while (!validPrep) {
+
+            System.out.print(TextFormatter.cyan("\nHow would you like your chicken prepped? "));
+            String userPrepStyle = myScanner.nextLine().toUpperCase().trim();
+
+            switch (userPrepStyle) {
+                case "ORIGINAL CRISPY" -> {
+                    prepStyle = PrepStyle.ORIGINAL_CRISPY;
+                    validPrep = true;
+                }
+                case "EXTRA CRISPY" -> {
+                    prepStyle = PrepStyle.EXTRA_CRISPY;
+                    validPrep = true;
+                }
+                case "GRILLED" -> {
+                    prepStyle = PrepStyle.GRILLED;
+                    validPrep = true;
+                }
+                default -> System.out.println(TextFormatter.red("\nNot a valid prep style. Try again."));
+            }
         }
         chicken.setPrepStyle(prepStyle);
 
@@ -95,7 +127,7 @@ public class ChickenBuilderScreen {
         // While loop and switch for premium toppings so user can choose multiple times
         while (isChoosingPrem){
 
-            System.out.print(TextFormatter.gold("\nWhat premium toppings would you like (4 MAX)? (Press 0 when finished) "));
+            System.out.print(TextFormatter.cyan("\nWhat premium toppings would you like (4 MAX)? (Press 0 when finished) "));
 
             String userPremToppings = myScanner.nextLine().toUpperCase().trim();
 
@@ -123,7 +155,7 @@ public class ChickenBuilderScreen {
         // While loop and switch for regular toppings
         while (isChoosingReg) {
 
-            System.out.print(TextFormatter.gold("\nWhat regular toppings would you like (4 MAX)? (Press 0 when finished) "));
+            System.out.print(TextFormatter.cyan("\nWhat regular toppings would you like (4 MAX)? (Press 0 when finished) "));
             String userRegToppings = myScanner.nextLine().toUpperCase().trim();
 
             switch (userRegToppings) {
@@ -151,7 +183,7 @@ public class ChickenBuilderScreen {
         // Time to choose sauces, while loop for choosing sauces
         while (isChoosingSauce) {
 
-            System.out.print(TextFormatter.gold("\nWhat sauces would like on your chicken (2 MAX)? (Press 0 when finished) "));
+            System.out.print(TextFormatter.cyan("\nWhat sauces would like on your chicken (2 MAX)? (Press 0 when finished) "));
             String userSauce = myScanner.nextLine().toUpperCase().trim();
 
             switch (userSauce) {
@@ -175,7 +207,7 @@ public class ChickenBuilderScreen {
         }
 
         // Asks user whether they would like chicken tossed in sauce or not
-        System.out.print(TextFormatter.gold("\nWould you like your chicken tossed in sauce or have it on the side? (Y/N) "));
+        System.out.print(TextFormatter.cyan("\nWould you like your chicken tossed in sauce or have it on the side? (Y/N) "));
         String userToss = myScanner.nextLine();
         chicken.setTossedInSauce(userToss.equalsIgnoreCase("y"));
 

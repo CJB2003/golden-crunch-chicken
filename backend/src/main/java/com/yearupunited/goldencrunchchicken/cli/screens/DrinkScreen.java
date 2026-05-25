@@ -48,47 +48,86 @@ public class DrinkScreen {
 
             Drink drink = new Drink();
 
-            System.out.print(TextFormatter.gold("Select a flavor (1-9): "));
-            String userChoice = myScanner.nextLine().trim();
+            boolean validFlavor = false;
+            while (!validFlavor) {
 
-            // Set drink flavor based on user choice
-            switch (userChoice) {
-                case "1" -> drink.setDrinkFlavor("BOBA TEA");
-                case "2" -> drink.setDrinkFlavor("ICED TEA");
-                case "3" -> drink.setDrinkFlavor("BANANA MILK");
-                case "4" -> drink.setDrinkFlavor("COKE");
-                case "5" -> drink.setDrinkFlavor("SPRITE");
-                case "6" -> drink.setDrinkFlavor("MILKIS");
-                case "7" -> drink.setDrinkFlavor("DR. PEPPER");
-                case "8" -> drink.setDrinkFlavor("LEMONADE");
-                case "9" -> drink.setDrinkFlavor("WATER");
-                default -> System.out.println(TextFormatter.red("We don't offer that drink. Please select one of the choices above."));
+                System.out.print(TextFormatter.cyan("\nSelect a flavor (1-9): "));
+                String userChoice = myScanner.nextLine().trim();
+
+                // Set drink flavor based on user choice
+                switch (userChoice) {
+                    case "1" -> {
+                        drink.setDrinkFlavor("BOBA TEA");
+                        validFlavor = true;
+                    }
+                    case "2" -> {
+                        drink.setDrinkFlavor("ICED TEA");
+                        validFlavor = true;
+                    }
+                    case "3" -> {
+                        drink.setDrinkFlavor("BANANA MILK");
+                        validFlavor = true;
+                    }
+                    case "4" -> {
+                        drink.setDrinkFlavor("COKE");
+                        validFlavor = true;
+                    }
+                    case "5" -> {
+                        drink.setDrinkFlavor("SPRITE");
+                        validFlavor = true;
+                    }
+                    case "6" -> {
+                        drink.setDrinkFlavor("MILKIS");
+                        validFlavor = true;
+                    }
+                    case "7" -> {
+                        drink.setDrinkFlavor("DR. PEPPER");
+                        validFlavor = true;
+                    }
+                    case "8" -> {
+                        drink.setDrinkFlavor("LEMONADE");
+                        validFlavor = true;
+                    }
+                    case "9" -> {
+                        drink.setDrinkFlavor("WATER");
+                        validFlavor = true;
+                    }
+                    default -> System.out.println(TextFormatter.red("\nWe don't offer that drink. Please select one of the choices above."));
+                }
             }
 
-            System.out.print(TextFormatter.gold("Select a size (SMALL, MEDIUM, OR LARGE): "));
-            String userSize = myScanner.nextLine().toUpperCase().trim();
+            boolean validSize = false;
+            while (!validSize) {
 
-            // Sets size of drink as well as price
-            switch (userSize) {
-                case "SMALL" -> {
-                    drink.setDrinkSize(DrinkSize.SMALL);
-                    drink.setDrinkPrice(BigDecimal.valueOf(2.00));
+                System.out.print(TextFormatter.cyan("\nSelect a size (SMALL, MEDIUM, OR LARGE): "));
+                String userSize = myScanner.nextLine().toUpperCase().trim();
+
+                // Sets size of drink as well as price
+                switch (userSize) {
+                    case "SMALL" -> {
+                        drink.setDrinkSize(DrinkSize.SMALL);
+                        drink.setDrinkPrice(BigDecimal.valueOf(2.00));
+                        validSize = true;
+                    }
+                    case "MEDIUM" -> {
+                        drink.setDrinkSize(DrinkSize.MEDIUM);
+                        drink.setDrinkPrice(BigDecimal.valueOf(2.50));
+                        validSize = true;
+                    }
+                    case "LARGE" -> {
+                        drink.setDrinkSize(DrinkSize.LARGE);
+                        drink.setDrinkPrice(BigDecimal.valueOf(3.00));
+                        validSize = true;
+                    }
+                    default -> System.out.println(TextFormatter.red("\nWe don't offer that size. Please try again."));
                 }
-                case "MEDIUM" -> {
-                    drink.setDrinkSize(DrinkSize.MEDIUM);
-                    drink.setDrinkPrice(BigDecimal.valueOf(2.50));
-                }
-                case "LARGE" -> {
-                    drink.setDrinkSize(DrinkSize.LARGE);
-                    drink.setDrinkPrice(BigDecimal.valueOf(3.00));
-                }
-                default -> System.out.println(TextFormatter.red("We don't offer that size. Please try again."));
             }
             // Asks user is they want to add another drink
-            System.out.print("Would you like to add another drink (Y/N): ");
+            System.out.print(TextFormatter.cyan("\nWould you like to add another drink (Y/N): "));
             String userAddOrNo = myScanner.nextLine();
 
             if (!userAddOrNo.equalsIgnoreCase("y")) {
+                System.out.println(TextFormatter.red("\nExiting drink menu..."));
                 isChoosingDrink = false;
             }
             drinkOrder = orderService.addDrinkToOrder(drinkOrder.getOrderId(), drink);
