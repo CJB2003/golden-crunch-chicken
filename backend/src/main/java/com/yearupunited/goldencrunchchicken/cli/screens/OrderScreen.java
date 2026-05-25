@@ -21,6 +21,7 @@ public class OrderScreen {
         boolean isOrderRunning = true;
 
         ChickenBuilderScreen chickenBuilder = new ChickenBuilderScreen(orderService);
+        DrinkScreen drinkScreen = new DrinkScreen(orderService);
 
         while (isOrderRunning) {
 
@@ -45,6 +46,7 @@ public class OrderScreen {
 
             switch (userChoice) {
                 case "1" -> order = chickenBuilder.displayChickenBuilder(order);
+                case "2" -> order = drinkScreen.displayDrinkScreen(order);
             }
         }
     }
