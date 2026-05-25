@@ -35,12 +35,12 @@ public class ChickenBuilderScreen {
                         _________________________________________________________________
                         ||                     CHICKEN BUILDER MENU                    ||
                         ||=============================================================||
-                        ||  [ WINGS ]  [ DRUMSTICKS ]  [ BONELESS ]  [ WHOLE CHICKEN ] ||
+                        ||   [WINGS]    [DRUMSTICKS]    [BONELESS]     [WHOLE CHICKEN] ||
                         ||    $8.99        $9.99         $10.50           $20.00       ||
                         ||-------------------------------------------------------------||
                         ||                      PREPARATION STYLES                     ||
                         ||-------------------------------------------------------------||
-                        ||    [ ORIGINAL CRISPY ]     [EXTRA CRISPY]     [GRILLED]     ||
+                        ||     [ORIGINAL CRISPY]     [EXTRA CRISPY]      [GRILLED]     ||
                         ||_____________________________________________________________||
                         ||                       PREMIUM TOPPINGS                      ||
                         ||-------------------------------------------------------------||
@@ -50,7 +50,7 @@ public class ChickenBuilderScreen {
                         ||-------------------------------------------------------------||
                         ||                      REGULAR TOPPINGS                       ||
                         ||-------------------------------------------------------------||
-                        ||   [SCALLIONS] [SESAME SEEDS] [PICKLED RADISH] [JALAPENOS]   ||
+                        ||          [SCALLIONS]  [SESAME SEEDS]  [JALAPENOS]           ||
                         ||_____________________________________________________________||
                         ||                          7 SAUCES                           ||
                         ||-------------------------------------------------------------||
@@ -161,7 +161,6 @@ public class ChickenBuilderScreen {
             switch (userRegToppings) {
                 case "SCALLIONS" -> chicken.getToppings().add(createRegularTopping("SCALLIONS"));
                 case "SESAME SEEDS" -> chicken.getToppings().add(createRegularTopping("SESAME SEEDS"));
-                case "PICKLED RADISH" -> chicken.getToppings().add(createRegularTopping("PICKLED RADISH"));
                 case "JALAPENOS" -> chicken.getToppings().add(createRegularTopping("JALAPENOS"));
                 case "0" -> isChoosingReg = false;
                 default -> System.out.println(TextFormatter.red("\nWe don't offer that topping. Please try again."));
@@ -210,6 +209,23 @@ public class ChickenBuilderScreen {
         System.out.print(TextFormatter.cyan("\nWould you like your chicken tossed in sauce or have it on the side? (Y/N) "));
         String userToss = myScanner.nextLine();
         chicken.setTossedInSauce(userToss.equalsIgnoreCase("y"));
+
+        // Created a special option for the chicken, 0.50 for all chicken cuts
+        System.out.print(TextFormatter.cyan("\nWould you like to upgrade to our special Golden Glaze today? (+0.50) (Y/N) "));
+        String userSpecial = myScanner.nextLine();
+
+        if (userSpecial.equalsIgnoreCase("y")) {
+
+            Toppings specialTopping = new Toppings();
+
+            specialTopping.setToppingName("GOLDEN GLAZE");
+            specialTopping.setToppingType(ToppingType.PREMIUM);
+            specialTopping.setPriceWings(BigDecimal.valueOf(0.50));
+            specialTopping.setPriceDrumsticks(BigDecimal.valueOf(0.50));
+            specialTopping.setPriceBoneless(BigDecimal.valueOf(0.50));
+            specialTopping.setPriceWhole(BigDecimal.valueOf(0.50));
+            chicken.getToppings().add(specialTopping);
+        }
 
         return orderService.addChickenToOrder(order.getOrderId(), chicken);
     }

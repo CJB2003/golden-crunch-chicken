@@ -24,7 +24,7 @@ public class DrinkScreen {
         System.out.println(TextFormatter.bold(TextFormatter.gold(
                 """
                 \n
-                ----------------------------
+                ____________________________
                 ||       DRINK MENU       ||
                 ||------------------------||
                 ||  SMALL  MEDIUM  LARGE  ||
@@ -124,7 +124,7 @@ public class DrinkScreen {
             }
             // Asks user is they want to add another drink
             System.out.print(TextFormatter.cyan("\nWould you like to add another drink (Y/N): "));
-            String userAddOrNo = myScanner.nextLine();
+            String userAddOrNo = myScanner.nextLine().trim();
 
             if (!userAddOrNo.equalsIgnoreCase("y")) {
                 System.out.println(TextFormatter.red("\nExiting drink menu..."));
