@@ -170,26 +170,32 @@ public class OrderService {
 
         for (Chicken chicken : order.getChickenItems()) {
 
-            receiptBuilder.append(chicken.customizedChicken()).append("\n");
+            receiptBuilder
+                    .append("\n")
+                    .append(chicken.customizedChicken())
+                    .append("\n");
         }
 
         for (Drink drink : order.getDrinks()) {
 
             receiptBuilder
+                    .append("\n")
                     .append(drink.getDrinkSize()).append(" ")
                     .append(drink.getDrinkFlavor()).append(": ")
-                    .append(drink.getDrinkPrice()).append("\n");
+                    .append(String.format("$%.2f", drink.getDrinkPrice()))
+                    .append("\n");
         }
 
         for (Sides sides : order.getSides()) {
 
             receiptBuilder
-                    .append(sides.getSideType()).append(" ")
-                    .append(sides.getSidePrice());
+                    .append("\n")
+                    .append(sides.getSideType()).append("\n")
+                    .append(String.format("$%.2f", sides.getSidePrice()));
         }
         receiptBuilder
-                .append("Total: ")
-                .append(totalPrice)
+                .append("\nTOTAL: ")
+                .append(String.format("$%.2f", totalPrice))
                 .append("\n");
 
         return receiptBuilder.toString();

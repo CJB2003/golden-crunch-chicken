@@ -21,30 +21,31 @@ public class DrinkScreen {
 
     public Order displayDrinkScreen(Order drinkOrder) {
 
-        System.out.println(TextFormatter.bold(TextFormatter.gold(
-                """
-                \n
-                ____________________________
-                ||       DRINK MENU       ||
-                ||------------------------||
-                ||  SMALL  MEDIUM  LARGE  ||
-                ||  $2.00  $2.50   $3.00  ||
-                ||------------------------||
-                || 1) BOBA TEA            ||
-                || 2) ICED TEA            ||
-                || 3) BANANA MILK         ||
-                || 4) COKE                ||
-                || 5) SPRITE              ||
-                || 6) MILKIS              ||
-                || 7) DR. PEPPER          ||
-                || 8) LEMONADE            ||
-                || 9) WATER               ||
-                ||________________________||
-                """)
-        ));
         boolean isChoosingDrink = true;
 
         while(isChoosingDrink) {
+
+            System.out.println(TextFormatter.bold(TextFormatter.gold(
+                    """
+                    \n
+                    ____________________________
+                    ||       DRINK MENU       ||
+                    ||------------------------||
+                    ||  SMALL  MEDIUM  LARGE  ||
+                    ||  $2.00  $2.50   $3.00  ||
+                    ||------------------------||
+                    || 1) BOBA TEA            ||
+                    || 2) ICED TEA            ||
+                    || 3) BANANA MILK         ||
+                    || 4) COKE                ||
+                    || 5) SPRITE              ||
+                    || 6) MILKIS              ||
+                    || 7) DR. PEPPER          ||
+                    || 8) LEMONADE            ||
+                    || 9) WATER               ||
+                    ||________________________||
+                    """)
+            ));
 
             Drink drink = new Drink();
 

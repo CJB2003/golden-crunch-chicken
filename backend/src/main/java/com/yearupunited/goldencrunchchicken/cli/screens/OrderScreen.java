@@ -23,6 +23,7 @@ public class OrderScreen {
         ChickenBuilderScreen chickenBuilder = new ChickenBuilderScreen(orderService);
         DrinkScreen drinkScreen = new DrinkScreen(orderService);
         SideScreen sideScreen = new SideScreen(orderService);
+        CheckoutScreen checkoutScreen = new CheckoutScreen(orderService, chickenService);
 
         while (isOrderRunning) {
 
@@ -50,6 +51,11 @@ public class OrderScreen {
                 case "2" -> order = drinkScreen.displayDrinkScreen(order);
                 case "3" -> order = sideScreen.displaySideScreen(order);
                 case "4" -> {
+                    checkoutScreen.displayCheckoutScreen(order);
+                    isOrderRunning = false;
+                }
+                case "0" -> {
+                    orderService.cancelOrder(order.getOrderId());
                     isOrderRunning = false;
                 }
             }

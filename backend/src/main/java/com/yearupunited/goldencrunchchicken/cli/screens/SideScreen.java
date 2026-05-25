@@ -20,30 +20,31 @@ public class SideScreen {
     }
 
     public Order displaySideScreen(Order sideOrder) {
-        System.out.println(TextFormatter.bold(TextFormatter.gold(
-                """
-                ___________________________
-                ||      SIDES MENU       ||
-                ||-----------------------||
-                || 1) TTEOKBOKKI         ||
-                || 2) FRIES              ||
-                || 3) CHEESE BALLS       ||
-                || 4) PICKLED RADISH     ||
-                || 5) KIMCHI             ||
-                ||_______________________||
-                """)
-        ));
 
         boolean isChoosingSide = true;
 
         while (isChoosingSide) {
+
+            System.out.println(TextFormatter.bold(TextFormatter.gold(
+                    """
+                    ___________________________
+                    ||      SIDES MENU       ||
+                    ||-----------------------||
+                    || 1) TTEOKBOKKI         ||
+                    || 2) FRIES              ||
+                    || 3) CHEESE BALLS       ||
+                    || 4) PICKLED RADISH     ||
+                    || 5) KIMCHI             ||
+                    ||_______________________||
+                    """)
+            ));
 
             Sides sides = new Sides();
 
             boolean isValidSide = false;
             while (!isValidSide) {
 
-                System.out.print("Select a side (1-5): ");
+                System.out.print(TextFormatter.gold("Select a side (1-5): "));
                 String userSide = myScanner.nextLine().trim();
 
                 switch (userSide) {
@@ -75,7 +76,7 @@ public class SideScreen {
                     default -> System.out.println(TextFormatter.red("\nWe don't offer that side here. Please select one of the choices above."));
                 }
             }
-            System.out.print(TextFormatter.gold("\nWould you like to add another side (Y/N)? "));
+            System.out.print(TextFormatter.gold("\nWould you like to add another side (Y/N): "));
             String userAddOrNo = myScanner.nextLine().trim();
 
             if (!userAddOrNo.equalsIgnoreCase("y")) {
