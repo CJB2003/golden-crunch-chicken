@@ -2,13 +2,14 @@ package com.yearupunited.goldencrunchchicken.cli.screens;
 
 import com.yearupunited.goldencrunchchicken.model.Chicken;
 import com.yearupunited.goldencrunchchicken.model.Order;
+import com.yearupunited.goldencrunchchicken.model.Sauce;
 import com.yearupunited.goldencrunchchicken.model.Toppings;
 import com.yearupunited.goldencrunchchicken.model.enums.ChickenCut;
 import com.yearupunited.goldencrunchchicken.model.enums.PrepStyle;
+import com.yearupunited.goldencrunchchicken.model.enums.SauceType;
 import com.yearupunited.goldencrunchchicken.model.enums.ToppingType;
 import com.yearupunited.goldencrunchchicken.service.OrderService;
 import com.yearupunited.goldencrunchchicken.util.TextFormatter;
-import org.springframework.security.core.parameters.P;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
@@ -28,7 +29,9 @@ public class ChickenBuilderScreen {
         Chicken chicken = new Chicken();
 
         System.out.print(
-                TextFormatter.bold(TextFormatter.gold("""
+                TextFormatter.bold(TextFormatter.gold(
+                        """
+                        \n
                         _________________________________________________________________
                         ||                     CHICKEN BUILDER MENU                    ||
                         ||=============================================================||
@@ -54,10 +57,10 @@ public class ChickenBuilderScreen {
                         || [SOY GARLIC]     [GANGJEONG]     [GALBI]     [HONEY BUTTER] ||
                         ||         [KOREAN BBQ]      [BULGOGI]    [HOT SPICY]          ||
                         ||_____________________________________________________________||
-                        """)
+                        \n""")
                 )
         );
-        System.out.print(TextFormatter.gold("What cut of chicken would you like: "));
+        System.out.print(TextFormatter.gold("What cut of chicken would you like? "));
         String userChickenCut = myScanner.nextLine().toUpperCase().trim();
 
         ChickenCut chickenCut = ChickenCut.WINGS;
@@ -67,7 +70,7 @@ public class ChickenBuilderScreen {
             case "DRUMSTICKS" -> chickenCut = ChickenCut.DRUMSTICKS;
             case "BONELESS" -> chickenCut = ChickenCut.BONELESS;
             case "WHOLE CHICKEN" -> chickenCut = ChickenCut.WHOLE_CHICKEN;
-            default -> System.out.println(TextFormatter.red("Invalid chicken cut. Try again."));
+            default -> System.out.println(TextFormatter.red("\nInvalid chicken cut. Try again."));
         }
         chicken.setChickenCut(chickenCut);
 
@@ -80,15 +83,19 @@ public class ChickenBuilderScreen {
             case "ORIGINAL CRISPY" -> prepStyle = PrepStyle.ORIGINAL_CRISPY;
             case "EXTRA CRISPY" -> prepStyle = PrepStyle.EXTRA_CRISPY;
             case "GRILLED" -> prepStyle = PrepStyle.GRILLED;
-            default -> System.out.println(TextFormatter.red("Not a valid prep style. Try again."));
+            default -> System.out.println(TextFormatter.red("\nNot a valid prep style. Try again."));
         }
         chicken.setPrepStyle(prepStyle);
 
         boolean isChoosingPrem = true;
 
+        // Created a counter to set a limit for toppings on chicken
+        int toppingCounter = 0;
+
+        // While loop and switch for premium toppings so user can choose multiple times
         while (isChoosingPrem){
 
-            System.out.print("What premium toppings would you like? (Press 0 when finished) ");
+            System.out.print(TextFormatter.gold("\nWhat premium toppings would you like (4 MAX)? (Press 0 when finished) "));
 
             String userPremToppings = myScanner.nextLine().toUpperCase().trim();
 
@@ -98,57 +105,112 @@ public class ChickenBuilderScreen {
                 case "CORN CHEESE" -> chicken.getToppings().add(createPremiumTopping("CORN CHEESE"));
                 case "GARLIC BUTTER" -> chicken.getToppings().add(createPremiumTopping("GARLIC BUTTER"));
                 case "0" -> isChoosingPrem = false;
-                default -> System.out.println("We don't offer that topping. Please try again.");
+                default -> System.out.println(TextFormatter.red("\nWe don't offer that topping. Please try again."));
+            }
+
+            // Topping counter increments if not case 0 or default
+            if (!userPremToppings.equals("0") && !chicken.getToppings().isEmpty()) {
+                toppingCounter += 1;
+                if (toppingCounter >= 4) {
+                    System.out.println(TextFormatter.red("\nYou cannot have more than 4 toppings on your chicken."));
+                    isChoosingPrem = false;
+                }
             }
         }
 
         boolean isChoosingReg = true;
 
+        // While loop and switch for regular toppings
         while (isChoosingReg) {
 
-            Toppings regTopping = new Toppings();
-
-            System.out.println("What regular toppings would you like? (Press 0 when finished) ");
+            System.out.print(TextFormatter.gold("\nWhat regular toppings would you like (4 MAX)? (Press 0 when finished) "));
             String userRegToppings = myScanner.nextLine().toUpperCase().trim();
 
             switch (userRegToppings) {
-                case "SCALLIONS" -> {
-                    regTopping.setToppingName("SCALLIONS");
-                    regTopping.setToppingType(ToppingType.REGULAR);
-                    chicken.getToppings().add(regTopping);
-                }
-                case "SESAME SEEDS" -> {
-                    regTopping.setToppingName("SESAME SEEDS");
-                    regTopping.setToppingType(ToppingType.REGULAR);
-                    chicken.getToppings().add(regTopping);
-                }
-                case "PICKLED RADISH" -> {
-                    regTopping.setToppingName("PICKLED RADISH");
-                    regTopping.setToppingType(ToppingType.REGULAR);
-                    chicken.getToppings().add(regTopping);
-                }
-                case "JALAPENOS" -> {
-                    regTopping.setToppingName("JALAPENOS");
-                    regTopping.setToppingType(ToppingType.REGULAR);
-                    chicken.getToppings().add(regTopping);
-                }
+                case "SCALLIONS" -> chicken.getToppings().add(createRegularTopping("SCALLIONS"));
+                case "SESAME SEEDS" -> chicken.getToppings().add(createRegularTopping("SESAME SEEDS"));
+                case "PICKLED RADISH" -> chicken.getToppings().add(createRegularTopping("PICKLED RADISH"));
+                case "JALAPENOS" -> chicken.getToppings().add(createRegularTopping("JALAPENOS"));
                 case "0" -> isChoosingReg = false;
-                default -> System.out.println("We don't offer that topping. Please try again.");
+                default -> System.out.println(TextFormatter.red("\nWe don't offer that topping. Please try again."));
+            }
+
+            if (!userRegToppings.equals("0") && !chicken.getToppings().isEmpty()) {
+                toppingCounter += 1;
+                if (toppingCounter >= 4) {
+                    System.out.println(TextFormatter.red("\nYou cannot have more than 4 toppings on your chicken."));
+                    isChoosingReg = false;
+                }
             }
         }
+
+        boolean isChoosingSauce = true;
+
+        int sauceCounter = 0;
+
+        // Time to choose sauces, while loop for choosing sauces
+        while (isChoosingSauce) {
+
+            System.out.print(TextFormatter.gold("\nWhat sauces would like on your chicken (2 MAX)? (Press 0 when finished) "));
+            String userSauce = myScanner.nextLine().toUpperCase().trim();
+
+            switch (userSauce) {
+                case "SOY GARLIC" -> chicken.getSauces().add(createSauce(SauceType.SOY_GARLIC));
+                case "GANGJEONG" -> chicken.getSauces().add(createSauce(SauceType.GANG_JEONG));
+                case "GALBI" -> chicken.getSauces().add(createSauce(SauceType.GALBI));
+                case "HONEY BUTTER" -> chicken.getSauces().add(createSauce(SauceType.HONEY_BUTTER));
+                case "KOREAN BBQ" -> chicken.getSauces().add(createSauce(SauceType.KOREAN_BBQ));
+                case "BULGOGI" -> chicken.getSauces().add(createSauce(SauceType.BULGOGI));
+                case "HOT SPICY" -> chicken.getSauces().add(createSauce(SauceType.HOT_SPICY));
+                case "0" -> isChoosingSauce = false;
+                default -> System.out.println(TextFormatter.red("\nWe don't offer that sauce. Please try again."));
+            }
+            if (!userSauce.equals("0") && !chicken.getSauces().isEmpty()) {
+                sauceCounter += 1;
+                if (sauceCounter >= 2) {
+                    System.out.println(TextFormatter.red("\nYou cannot have more than 2 sauces for your chicken."));
+                    isChoosingSauce = false;
+                }
+            }
+        }
+
+        // Asks user whether they would like chicken tossed in sauce or not
+        System.out.print(TextFormatter.gold("\nWould you like your chicken tossed in sauce or have it on the side? (Y/N) "));
+        String userToss = myScanner.nextLine();
+        chicken.setTossedInSauce(userToss.equalsIgnoreCase("y"));
+
+        return orderService.addChickenToOrder(order.getOrderId(), chicken);
     }
 
     /// Created a helper method that sets up the prices and topping type of premium topping
     private Toppings createPremiumTopping(String toppingName) {
 
-        Toppings toppings = new Toppings();
+        Toppings premToppings = new Toppings();
 
-        toppings.setToppingName(toppingName);
-        toppings.setToppingType(ToppingType.PREMIUM);
-        toppings.setPriceWings(BigDecimal.valueOf(0.75));
-        toppings.setPriceDrumsticks(BigDecimal.valueOf(0.99));
-        toppings.setPriceBoneless(BigDecimal.valueOf(1.50));
-        toppings.setPriceWhole(BigDecimal.valueOf(2.50));
-        return toppings;
+        premToppings.setToppingName(toppingName);
+        premToppings.setToppingType(ToppingType.PREMIUM);
+        premToppings.setPriceWings(BigDecimal.valueOf(0.75));
+        premToppings.setPriceDrumsticks(BigDecimal.valueOf(0.99));
+        premToppings.setPriceBoneless(BigDecimal.valueOf(1.50));
+        premToppings.setPriceWhole(BigDecimal.valueOf(2.50));
+        return premToppings;
+    }
+
+    /// Helper method for regular toppings
+    private Toppings createRegularTopping(String toppingName) {
+
+        Toppings regToppings = new Toppings();
+
+        regToppings.setToppingName(toppingName);
+        regToppings.setToppingType(ToppingType.REGULAR);
+        return regToppings;
+    }
+
+    /// Made helper method for sauces
+    private Sauce createSauce(SauceType sauceType) {
+
+        Sauce sauce = new Sauce();
+        sauce.setSauceType(sauceType);
+        return sauce;
     }
 }

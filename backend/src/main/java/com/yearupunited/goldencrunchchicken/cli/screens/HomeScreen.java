@@ -23,7 +23,7 @@ public class HomeScreen {
                                     || 1) New Order                     ||
                                     || 0) Exit                          ||
                                     ======================================
-                                    \n"""
+                                    """
                     ))
             );
             System.out.print(TextFormatter.gold("Selection: "));

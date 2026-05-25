@@ -27,6 +27,7 @@ public class OrderScreen {
             System.out.println(
                     TextFormatter.bold(TextFormatter.gold(
                     """
+                    \n
                     _______________________
                     ||   Ordering Menu   ||
                     =======================
@@ -39,12 +40,11 @@ public class OrderScreen {
                     """)
             ));
 
-            System.out.print(TextFormatter.gold("Selection"));
+            System.out.print(TextFormatter.gold("Selection: "));
             String userChoice = myScanner.nextLine();
 
             switch (userChoice) {
                 case "1" -> order = chickenBuilder.displayChickenBuilder(order);
-                case "2" ->
             }
         }
     }
