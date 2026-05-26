@@ -159,6 +159,7 @@ public class OrderService {
         return receipt;
     }
 
+    /// Builds the receipt txt file layer by layer through StringBuilder
     public String receiptBuilder(Order order, BigDecimal totalPrice) {
 
         StringBuilder receiptBuilder = new StringBuilder();
@@ -166,7 +167,7 @@ public class OrderService {
         receiptBuilder
                 .append("Golden Crunch Chicken\n")
                 .append("----------------------\n")
-                .append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss")))
+                .append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a")))
                 .append("\n");
 
         for (Chicken chicken : order.getChickenItems()) {
@@ -191,7 +192,8 @@ public class OrderService {
 
             receiptBuilder
                     .append("\n")
-                    .append(sides.getSideType()).append("\n")
+                    .append(sides.getSideType().toString().replace("_", " "))
+                    .append(": ")
                     .append(String.format("$%.2f", sides.getSidePrice()));
         }
         receiptBuilder

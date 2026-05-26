@@ -1,6 +1,6 @@
-package com.yearupunited.goldencrunchchicken.cli;
+package com.yearupunited.goldencrunchchicken;
 
-import com.yearupunited.goldencrunchchicken.cli.screens.HomeScreen;
+import com.yearupunited.goldencrunchchicken.screens.HomeScreen;
 
 public class GCCBaseApp {
     public static void main(String[] args) {

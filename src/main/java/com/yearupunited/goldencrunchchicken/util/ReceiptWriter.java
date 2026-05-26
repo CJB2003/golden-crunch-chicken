@@ -7,8 +7,8 @@ import java.io.FileWriter;
 public class ReceiptWriter {
 
     public static void writeToFile(String receiptBuilder, String filename) {
-
-        File receiptFile = new File("backend/src/main/resources/receipts/" + filename);
+        // Stores filename
+        File receiptFile = new File("src/main/resources/receipts/" + filename);
 
         try {
 

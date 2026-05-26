@@ -39,6 +39,12 @@ public class TextFormatter {
         return WHITE + text + reset;
     }
 
+    public static void clearScreen() {
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+    }
+
     public static String colorForAmount(double amount) {
 
         // Formats the text to 2 decimal places for amount

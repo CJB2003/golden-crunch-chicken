@@ -39,17 +39,21 @@ public class Chicken {
     public String customizedChicken() {
 
         StringBuilder toppingStuff = new StringBuilder();
-        for (Toppings topping : toppings) {
 
-            toppingStuff.append(topping.getToppingName());
-            if (topping.getToppingType() == ToppingType.PREMIUM) {
+        // Switched to a for loop so I can check position and remove at end
+        for (int i = 0; i < toppings.size(); i++) {
+
+            toppingStuff.append(toppings.get(i).getToppingName());
+            if (toppings.get(i).getToppingType() == ToppingType.PREMIUM) {
                 toppingStuff.append(" [PREMIUM]");
             }
-            toppingStuff.append(", ");
+            if (i < toppings.size() - 1) {
+                toppingStuff.append(", ");
+            }
         }
         return "Type of cut: " + chickenCut.toString().replace("_", " ")
-                + " | Toppings: " + toppingStuff
-                + " | Prep style: " + prepStyle.toString().replace("_", " ")
-                + " | " + (tossedInSauce ? "[Tossed in sauce]" : "[Sauce on side]");
+                + "\nToppings: " + toppingStuff
+                + "\nPrep style: " + prepStyle.toString().replace("_", " ")
+                + "\n" + (tossedInSauce ? "[Tossed in sauce]" : "[Sauce on side]");
     }
 }

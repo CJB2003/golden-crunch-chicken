@@ -1,4 +1,4 @@
-package com.yearupunited.goldencrunchchicken.cli.screens;
+package com.yearupunited.goldencrunchchicken.screens;
 
 import com.yearupunited.goldencrunchchicken.model.*;
 import com.yearupunited.goldencrunchchicken.service.ChickenService;
@@ -23,25 +23,33 @@ public class CheckoutScreen {
     /// Retrieves all items from order and prints out as summary, then prints calculated total.
     public void displayCheckoutScreen(Order order) {
 
+        System.out.println();
+
         for (Chicken chicken : order.getChickenItems()) {
 
-            System.out.println(TextFormatter.cyan(chicken.customizedChicken() + ": $" + chickenService.calculatedChickenPrice(chicken)));
+            System.out.println(TextFormatter.bold(TextFormatter.cyan(chicken.customizedChicken()
+                    + ": $" + chickenService.calculatedChickenPrice(chicken))));
 
         }
+
+        System.out.println();
 
         for (Drink drink : order.getDrinks()) {
 
-            System.out.println(TextFormatter.cyan("\n" + drink.getDrinkSize()
-                    + " " + drink.getDrinkFlavor() + ": $" + drink.getDrinkPrice()));
+            System.out.println(TextFormatter.bold(TextFormatter.cyan(drink.getDrinkSize()
+                    + " " + drink.getDrinkFlavor() + ": $" + drink.getDrinkPrice())));
         }
+
+        System.out.println();
 
         for (Sides sides : order.getSides()) {
 
-            System.out.println(TextFormatter.cyan("\n" + sides.getSideType() + ": $" + sides.getSidePrice()));
+            System.out.println(TextFormatter.bold(TextFormatter.cyan(sides.getSideType().toString().replace("_", " ")
+                    + ": $" + sides.getSidePrice())));
         }
 
         BigDecimal orderTotal = orderService.calculateOrderPrice(order.getOrderId());
-        System.out.println(TextFormatter.gold("TOTAL: $" + orderTotal));
+        System.out.println(TextFormatter.gold("\nTOTAL: $" + orderTotal));
 
         System.out.println(TextFormatter.bold(TextFormatter.gold(
                 """
@@ -50,18 +58,18 @@ public class CheckoutScreen {
                 """
         )));
 
-        System.out.print(TextFormatter.cyan("Selection (1 or 0): "));
+        System.out.print(TextFormatter.bold(TextFormatter.cyan("Selection (1 or 0): ")));
         String userChoice = myScanner.nextLine();
 
         // Stores receipt and prints out filename of receipt
         if (userChoice.equalsIgnoreCase("1")) {
             Receipt receipt = orderService.checkout(order.getOrderId());
-            System.out.println(TextFormatter.cyan("Receipt saved: " + receipt.getFilename()));
+            System.out.println(TextFormatter.bold(TextFormatter.cyan("Receipt saved: " + receipt.getFilename())));
         }
         // Cancels and removes order
         else {
             orderService.cancelOrder(order.getOrderId());
-            System.out.println(TextFormatter.red("Order has been cancelled."));
+            System.out.println(TextFormatter.bold(TextFormatter.red("Order has been cancelled.")));
         }
     }
 }

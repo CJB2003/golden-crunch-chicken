@@ -1,4 +1,4 @@
-package com.yearupunited.goldencrunchchicken.cli.screens;
+package com.yearupunited.goldencrunchchicken.screens;
 
 import com.yearupunited.goldencrunchchicken.model.Drink;
 import com.yearupunited.goldencrunchchicken.model.Order;
@@ -19,6 +19,7 @@ public class DrinkScreen {
         this.orderService = orderService;
     }
 
+    /// Displays the drink menu, added validation while loops so user can't break the code.
     public Order displayDrinkScreen(Order drinkOrder) {
 
         boolean isChoosingDrink = true;
@@ -52,7 +53,7 @@ public class DrinkScreen {
             boolean validFlavor = false;
             while (!validFlavor) {
 
-                System.out.print(TextFormatter.cyan("\nSelect a flavor (1-9): "));
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("\nSelect a flavor (1-9): ")));
                 String userChoice = myScanner.nextLine().trim();
 
                 // Set drink flavor based on user choice
@@ -93,14 +94,14 @@ public class DrinkScreen {
                         drink.setDrinkFlavor("WATER");
                         validFlavor = true;
                     }
-                    default -> System.out.println(TextFormatter.red("\nWe don't offer that drink. Please select one of the choices above."));
+                    default -> System.out.println(TextFormatter.bold(TextFormatter.red("\nWe don't offer that drink. Please select one of the choices above.")));
                 }
             }
 
             boolean validSize = false;
             while (!validSize) {
 
-                System.out.print(TextFormatter.cyan("\nSelect a size (SMALL, MEDIUM, OR LARGE): "));
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("\nSelect a size (SMALL, MEDIUM, OR LARGE): ")));
                 String userSize = myScanner.nextLine().toUpperCase().trim();
 
                 // Sets size of drink as well as price
@@ -120,18 +121,29 @@ public class DrinkScreen {
                         drink.setDrinkPrice(BigDecimal.valueOf(3.00));
                         validSize = true;
                     }
-                    default -> System.out.println(TextFormatter.red("\nWe don't offer that size. Please try again."));
+                    default -> System.out.println(TextFormatter.bold(TextFormatter.red("\nWe don't offer that size. Please try again.")));
                 }
             }
-            // Asks user is they want to add another drink
-            System.out.print(TextFormatter.cyan("\nWould you like to add another drink (Y/N): "));
-            String userAddOrNo = myScanner.nextLine().trim();
 
-            if (!userAddOrNo.equalsIgnoreCase("y")) {
-                System.out.println(TextFormatter.red("\nExiting drink menu..."));
-                isChoosingDrink = false;
-            }
             drinkOrder = orderService.addDrinkToOrder(drinkOrder.getOrderId(), drink);
+
+            boolean validChoice = false;
+            while (!validChoice) {
+                // Asks user is they want to add another drink
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWould you like to add another drink (Y/N): ")));
+                String userAddOrNo = myScanner.nextLine().trim();
+
+                if (userAddOrNo.equalsIgnoreCase("y")) {
+                    validChoice = true;
+                } else if (userAddOrNo.equalsIgnoreCase("n")) {
+                    System.out.println(TextFormatter.bold(TextFormatter.red("\nExiting drink menu...")));
+                    isChoosingDrink = false;
+                    validChoice = true;
+                }
+                else {
+                    System.out.println(TextFormatter.bold(TextFormatter.red("\nPlease enter Y or N.")));
+                }
+            }
         }
         return drinkOrder;
     }

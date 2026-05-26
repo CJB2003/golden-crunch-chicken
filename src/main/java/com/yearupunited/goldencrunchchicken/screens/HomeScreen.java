@@ -1,4 +1,4 @@
-package com.yearupunited.goldencrunchchicken.cli.screens;
+package com.yearupunited.goldencrunchchicken.screens;
 
 import com.yearupunited.goldencrunchchicken.util.TextFormatter;
 
@@ -26,13 +26,13 @@ public class HomeScreen {
                                     """
                     ))
             );
-            System.out.print(TextFormatter.cyan("Selection: "));
+            System.out.print(TextFormatter.bold(TextFormatter.cyan("Selection: ")));
             String userChoice = myScanner.nextLine();
 
             switch (userChoice) {
                 case "1" -> orderScreen.displayOrderScreen();
                 case "0" -> isHomeRunning = false;
-                default -> System.out.println(TextFormatter.red("\nInvalid choice. Please try again."));
+                default -> System.out.println(TextFormatter.bold(TextFormatter.red("\nInvalid choice. Please try again.")));
             }
         }
     }

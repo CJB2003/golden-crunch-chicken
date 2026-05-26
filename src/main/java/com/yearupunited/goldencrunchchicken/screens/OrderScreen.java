@@ -1,4 +1,4 @@
-package com.yearupunited.goldencrunchchicken.cli.screens;
+package com.yearupunited.goldencrunchchicken.screens;
 
 import com.yearupunited.goldencrunchchicken.model.Order;
 import com.yearupunited.goldencrunchchicken.service.ChickenService;

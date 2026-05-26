@@ -1,4 +1,4 @@
-package com.yearupunited.goldencrunchchicken.cli.screens;
+package com.yearupunited.goldencrunchchicken.screens;
 
 import com.yearupunited.goldencrunchchicken.model.Order;
 import com.yearupunited.goldencrunchchicken.model.Sides;
@@ -44,7 +44,7 @@ public class SideScreen {
             boolean isValidSide = false;
             while (!isValidSide) {
 
-                System.out.print(TextFormatter.gold("Select a side (1-5): "));
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("Select a side (1-5): ")));
                 String userSide = myScanner.nextLine().trim();
 
                 switch (userSide) {
@@ -73,17 +73,28 @@ public class SideScreen {
                         sides.setSidePrice(BigDecimal.valueOf(0.50));
                         isValidSide = true;
                     }
-                    default -> System.out.println(TextFormatter.red("\nWe don't offer that side here. Please select one of the choices above."));
+                    default -> System.out.println(TextFormatter.bold(TextFormatter.red("\nWe don't offer that side here. Please select one of the choices above.")));
                 }
             }
-            System.out.print(TextFormatter.gold("\nWould you like to add another side (Y/N): "));
-            String userAddOrNo = myScanner.nextLine().trim();
 
-            if (!userAddOrNo.equalsIgnoreCase("y")) {
-                System.out.println(TextFormatter.red("\nExiting side menu..."));
-                isChoosingSide = false;
-            }
             sideOrder = orderService.addSideToOrder(sideOrder.getOrderId(), sides);
+
+            boolean validChoice = false;
+            while (!validChoice) {
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWould you like to add another side (Y/N): ")));
+                String userAddOrNo = myScanner.nextLine().trim();
+
+                if (userAddOrNo.equalsIgnoreCase("y")) {
+                    validChoice = true;
+                }
+                else if (userAddOrNo.equalsIgnoreCase("n")) {
+                    System.out.println(TextFormatter.bold(TextFormatter.red("\nExiting side menu...")));
+                    isChoosingSide = false;
+                }
+                else {
+                    System.out.println(TextFormatter.bold(TextFormatter.red("\nPlease enter Y or N.")));
+                }
+            }
         }
         return sideOrder;
     }

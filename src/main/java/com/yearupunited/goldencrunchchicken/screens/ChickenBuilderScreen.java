@@ -1,4 +1,4 @@
-package com.yearupunited.goldencrunchchicken.cli.screens;
+package com.yearupunited.goldencrunchchicken.screens;
 
 import com.yearupunited.goldencrunchchicken.model.Chicken;
 import com.yearupunited.goldencrunchchicken.model.Order;
@@ -41,25 +41,6 @@ public class ChickenBuilderScreen {
                             ||=============================================================||
                             ||   [WINGS]    [DRUMSTICKS]    [BONELESS]     [WHOLE CHICKEN] ||
                             ||    $8.99        $9.99         $10.50           $20.00       ||
-                            ||-------------------------------------------------------------||
-                            ||                      PREPARATION STYLES                     ||
-                            ||-------------------------------------------------------------||
-                            ||     [ORIGINAL CRISPY]     [EXTRA CRISPY]      [GRILLED]     ||
-                            ||_____________________________________________________________||
-                            ||                       PREMIUM TOPPINGS                      ||
-                            ||-------------------------------------------------------------||
-                            || WINGS: $0.75 DRUMSTICKS: $0.99 BONELESS: $1.50 WHOLE: $2.50 ||
-                            ||                                                             ||
-                            ||[BONITO FLAKES] [CHEESE POWDER] [CORN CHEESE] [GARLIC BUTTER]||
-                            ||-------------------------------------------------------------||
-                            ||                      REGULAR TOPPINGS                       ||
-                            ||-------------------------------------------------------------||
-                            ||          [SCALLIONS]  [SESAME SEEDS]  [JALAPENOS]           ||
-                            ||_____________________________________________________________||
-                            ||                          7 SAUCES                           ||
-                            ||-------------------------------------------------------------||
-                            || [SOY GARLIC]     [GANGJEONG]     [GALBI]     [HONEY BUTTER] ||
-                            ||         [KOREAN BBQ]      [BULGOGI]    [HOT SPICY]          ||
                             ||_____________________________________________________________||
                             """)
                     )
@@ -71,7 +52,7 @@ public class ChickenBuilderScreen {
 
             while (!validCut) {
 
-                System.out.print(TextFormatter.cyan("\nWhat cut of chicken would you like? "));
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWhat cut of chicken would you like? ")));
                 String userChickenCut = myScanner.nextLine().toUpperCase().trim();
 
                 switch (userChickenCut) {
@@ -91,10 +72,23 @@ public class ChickenBuilderScreen {
                         chickenCut = ChickenCut.WHOLE_CHICKEN;
                         validCut = true;
                     }
-                    default -> System.out.println(TextFormatter.red("\nInvalid chicken cut. Try again."));
+                    default -> System.out.println(TextFormatter.bold(TextFormatter.red("\nInvalid chicken cut. Try again.")));
                 }
             }
             chicken.setChickenCut(chickenCut);
+
+            System.out.println(
+                    TextFormatter.bold(TextFormatter.gold(
+                    """
+                    \n
+                    _________________________________________________________________
+                    ||                      PREPARATION STYLES                     ||
+                    ||-------------------------------------------------------------||
+                    ||     [ORIGINAL CRISPY]     [EXTRA CRISPY]      [GRILLED]     ||
+                    ||_____________________________________________________________||
+                    """)
+                    )
+            );
 
             PrepStyle prepStyle = PrepStyle.ORIGINAL_CRISPY;
 
@@ -102,7 +96,7 @@ public class ChickenBuilderScreen {
 
             while (!validPrep) {
 
-                System.out.print(TextFormatter.cyan("\nHow would you like your chicken prepped? "));
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("How would you like your chicken prepped? ")));
                 String userPrepStyle = myScanner.nextLine().toUpperCase().trim();
 
                 switch (userPrepStyle) {
@@ -118,10 +112,25 @@ public class ChickenBuilderScreen {
                         prepStyle = PrepStyle.GRILLED;
                         validPrep = true;
                     }
-                    default -> System.out.println(TextFormatter.red("\nNot a valid prep style. Try again."));
+                    default -> System.out.println(TextFormatter.bold(TextFormatter.red("\nNot a valid prep style. Try again.")));
                 }
             }
             chicken.setPrepStyle(prepStyle);
+
+            System.out.println(
+                    TextFormatter.bold(TextFormatter.gold(
+                    """
+                    \n
+                    _________________________________________________________________
+                    ||                       PREMIUM TOPPINGS                      ||
+                    ||-------------------------------------------------------------||
+                    || WINGS: $0.75 DRUMSTICKS: $0.99 BONELESS: $1.50 WHOLE: $2.50 ||
+                    ||                                                             ||
+                    ||[BONITO FLAKES] [CHEESE POWDER] [CORN CHEESE] [GARLIC BUTTER]||
+                    ||_____________________________________________________________||
+                    """)
+                    )
+            );
 
             boolean isChoosingPrem = true;
 
@@ -131,8 +140,7 @@ public class ChickenBuilderScreen {
             // While loop and switch for premium toppings so user can choose multiple times
             while (isChoosingPrem) {
 
-                System.out.print(TextFormatter.cyan("\nWhat premium toppings would you like (4 MAX)? (Press 0 when finished) "));
-
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("What premium toppings would you like (4 MAX)? (Press 0 when finished) ")));
                 String userPremToppings = myScanner.nextLine().toUpperCase().trim();
 
                 switch (userPremToppings) {
@@ -141,26 +149,38 @@ public class ChickenBuilderScreen {
                     case "CORN CHEESE" -> chicken.getToppings().add(createPremiumTopping("CORN CHEESE"));
                     case "GARLIC BUTTER" -> chicken.getToppings().add(createPremiumTopping("GARLIC BUTTER"));
                     case "0" -> isChoosingPrem = false;
-                    default ->
-                            System.out.println(TextFormatter.red("\nWe don't offer that topping. Please try again."));
+                    default -> System.out.println(TextFormatter.bold(TextFormatter.red("\nWe don't offer that topping. Please try again.")));
                 }
 
                 // Topping counter increments if not case 0 or default
                 if (!userPremToppings.equals("0") && !chicken.getToppings().isEmpty()) {
                     toppingCounter += 1;
                     if (toppingCounter >= 4) {
-                        System.out.println(TextFormatter.red("\nYou cannot have more than 4 toppings on your chicken."));
+                        System.out.println(TextFormatter.bold(TextFormatter.red("\nYou cannot have more than 4 toppings on your chicken.")));
                         isChoosingPrem = false;
                     }
                 }
             }
+
+            System.out.println(
+                    TextFormatter.bold(TextFormatter.gold(
+                    """
+                    \n
+                    _________________________________________________________________
+                    ||                      REGULAR TOPPINGS                       ||
+                    ||-------------------------------------------------------------||
+                    ||          [SCALLIONS]  [SESAME SEEDS]  [JALAPENOS]           ||
+                    ||_____________________________________________________________||
+                    """)
+                    )
+            );
 
             boolean isChoosingReg = true;
 
             // While loop and switch for regular toppings
             while (isChoosingReg) {
 
-                System.out.print(TextFormatter.cyan("\nWhat regular toppings would you like (4 MAX)? (Press 0 when finished) "));
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("What regular toppings would you like (4 MAX)? (Press 0 when finished) ")));
                 String userRegToppings = myScanner.nextLine().toUpperCase().trim();
 
                 switch (userRegToppings) {
@@ -168,18 +188,31 @@ public class ChickenBuilderScreen {
                     case "SESAME SEEDS" -> chicken.getToppings().add(createRegularTopping("SESAME SEEDS"));
                     case "JALAPENOS" -> chicken.getToppings().add(createRegularTopping("JALAPENOS"));
                     case "0" -> isChoosingReg = false;
-                    default ->
-                            System.out.println(TextFormatter.red("\nWe don't offer that topping. Please try again."));
+                    default -> System.out.println(TextFormatter.bold(TextFormatter.red("\nWe don't offer that topping. Please try again.")));
                 }
 
                 if (!userRegToppings.equals("0") && !chicken.getToppings().isEmpty()) {
                     toppingCounter += 1;
                     if (toppingCounter >= 4) {
-                        System.out.println(TextFormatter.red("\nYou cannot have more than 4 toppings on your chicken."));
+                        System.out.println(TextFormatter.bold(TextFormatter.red("\nYou cannot have more than 4 toppings on your chicken.")));
                         isChoosingReg = false;
                     }
                 }
             }
+
+            System.out.println(
+                    TextFormatter.bold(TextFormatter.gold(
+                    """
+                    \n
+                    _________________________________________________________________
+                    ||                          7 SAUCES                           ||
+                    ||-------------------------------------------------------------||
+                    || [SOY GARLIC]     [GANGJEONG]     [GALBI]     [HONEY BUTTER] ||
+                    ||         [KOREAN BBQ]      [BULGOGI]    [HOT SPICY]          ||
+                    ||_____________________________________________________________||
+                    """)
+                    )
+            );
 
             boolean isChoosingSauce = true;
 
@@ -188,7 +221,7 @@ public class ChickenBuilderScreen {
             // Time to choose sauces, while loop for choosing sauces
             while (isChoosingSauce) {
 
-                System.out.print(TextFormatter.cyan("\nWhat sauces would like on your chicken (2 MAX)? (Press 0 when finished) "));
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("What sauces would like on your chicken (2 MAX)? (Press 0 when finished) ")));
                 String userSauce = myScanner.nextLine().toUpperCase().trim();
 
                 switch (userSauce) {
@@ -200,24 +233,25 @@ public class ChickenBuilderScreen {
                     case "BULGOGI" -> chicken.getSauces().add(createSauce(SauceType.BULGOGI));
                     case "HOT SPICY" -> chicken.getSauces().add(createSauce(SauceType.HOT_SPICY));
                     case "0" -> isChoosingSauce = false;
-                    default -> System.out.println(TextFormatter.red("\nWe don't offer that sauce. Please try again."));
+                    default -> System.out.println(TextFormatter.bold(TextFormatter.red("\nWe don't offer that sauce. Please try again.")));
                 }
                 if (!userSauce.equals("0") && !chicken.getSauces().isEmpty()) {
                     sauceCounter += 1;
                     if (sauceCounter >= 2) {
-                        System.out.println(TextFormatter.red("\nYou cannot have more than 2 sauces for your chicken."));
+                        System.out.println(TextFormatter.bold(TextFormatter.red("\nYou cannot have more than 2 sauces for your chicken.")));
                         isChoosingSauce = false;
                     }
                 }
             }
 
             // Asks user whether they would like chicken tossed in sauce or not
-            System.out.print(TextFormatter.cyan("\nWould you like your chicken tossed in sauce or have it on the side? (Y/N) "));
+            System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWould you like your chicken tossed in sauce or have it on the side? (Y/N) ")));
             String userToss = myScanner.nextLine();
+
             chicken.setTossedInSauce(userToss.equalsIgnoreCase("y"));
 
             // Created a special option for the chicken, 0.50 for all chicken cuts
-            System.out.print(TextFormatter.cyan("\nWould you like to upgrade to our special Golden Glaze today? (+0.50) (Y/N) "));
+            System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWould you like to upgrade to our special Golden Glaze today? (+0.50) (Y/N) ")));
             String userSpecial = myScanner.nextLine();
 
             if (userSpecial.equalsIgnoreCase("y")) {
@@ -232,11 +266,12 @@ public class ChickenBuilderScreen {
                 specialTopping.setPriceWhole(BigDecimal.valueOf(0.50));
                 chicken.getToppings().add(specialTopping);
             }
-            System.out.print(TextFormatter.cyan("Would like to add another order of chicken (Y/N): "));
+            System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWould like to add another order of chicken (Y/N): ")));
             String userAddOrNo = myScanner.nextLine().trim();
 
             if(!userAddOrNo.equalsIgnoreCase("y")) {
-                System.out.println(TextFormatter.red("\nExiting chicken builder menu..."));
+
+                System.out.println(TextFormatter.bold(TextFormatter.red("\nExiting chicken builder menu...")));
                 isBuildingChicken = false;
             }
             chickenOrder = orderService.addChickenToOrder(chickenOrder.getOrderId(), chicken);
