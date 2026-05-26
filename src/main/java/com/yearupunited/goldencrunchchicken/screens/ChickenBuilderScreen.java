@@ -266,15 +266,27 @@ public class ChickenBuilderScreen {
                 specialTopping.setPriceWhole(BigDecimal.valueOf(0.50));
                 chicken.getToppings().add(specialTopping);
             }
-            System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWould like to add another order of chicken (Y/N): ")));
-            String userAddOrNo = myScanner.nextLine().trim();
 
-            if(!userAddOrNo.equalsIgnoreCase("y")) {
-
-                System.out.println(TextFormatter.bold(TextFormatter.red("\nExiting chicken builder menu...")));
-                isBuildingChicken = false;
-            }
             chickenOrder = orderService.addChickenToOrder(chickenOrder.getOrderId(), chicken);
+
+            boolean validChoice = false;
+            while(!validChoice) {
+
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWould like to add another order of chicken (Y/N): ")));
+                String userAddOrNo = myScanner.nextLine().trim();
+
+                if (userAddOrNo.equalsIgnoreCase("y")) {
+                    validChoice = true;
+                }
+                else if (userAddOrNo.equalsIgnoreCase("n")) {
+                    System.out.println(TextFormatter.bold(TextFormatter.red("\nExiting chicken builder menu...")));
+                    isBuildingChicken = false;
+                    validChoice = true;
+                }
+                else {
+                    System.out.println(TextFormatter.bold(TextFormatter.red("\nPleae enter Y or N.")));
+                }
+            }
         }
         return chickenOrder;
     }
