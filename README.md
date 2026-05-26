@@ -178,5 +178,7 @@ On Windows:
 - **BigDecimal** — precise currency calculations throughout
 
 ---
+## Diagram
+![Diagram](diagram/GoldenCrunch_ClassDiagram.png)
 
 *Golden Crunch Chicken · Double-fried. Perfectly glazed. 🍗*
