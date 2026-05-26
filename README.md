@@ -179,6 +179,6 @@ On Windows:
 
 ---
 ## Diagram
-![Diagram](diagram/GoldenCrunch_ClassDiagram.png)
+![Diagram](diagram/GoldenCrunchChicken.drawio.png)
 
 *Golden Crunch Chicken · Double-fried. Perfectly glazed. 🍗*
