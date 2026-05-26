@@ -6,11 +6,11 @@ import java.util.Scanner;
 
 public class HomeScreen {
 
-    Scanner myScanner = new Scanner(System.in);
+    static Scanner myScanner = new Scanner(System.in);
 
-    OrderScreen orderScreen = new OrderScreen();
+    static OrderScreen orderScreen = new OrderScreen();
 
-    public void displayHomeScreen() {
+    public static void displayHomeScreen() {
         boolean isHomeRunning = true;
 
         while (isHomeRunning) {

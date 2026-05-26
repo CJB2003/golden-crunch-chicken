@@ -177,6 +177,8 @@ public class OrderService {
             receiptBuilder
                     .append("\n")
                     .append(chicken.customizedChicken())
+                    .append("\nPrice of Chicken: ")
+                    .append(chickenService.calculatedChickenPrice(chicken))
                     .append("\n");
         }
 

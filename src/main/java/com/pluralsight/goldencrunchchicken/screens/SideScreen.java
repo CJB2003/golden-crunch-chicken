@@ -13,7 +13,7 @@ public class SideScreen {
 
     Scanner myScanner = new Scanner(System.in);
 
-    private OrderService orderService;
+    private final OrderService orderService;
 
     public SideScreen(OrderService orderService) {
         this.orderService = orderService;

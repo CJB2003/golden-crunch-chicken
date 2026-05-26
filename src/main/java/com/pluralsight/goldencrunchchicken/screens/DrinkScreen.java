@@ -13,7 +13,7 @@ public class DrinkScreen {
 
     Scanner myScanner = new Scanner(System.in);
 
-    private OrderService orderService;
+    private final OrderService orderService;
 
     public DrinkScreen(OrderService orderService) {
         this.orderService = orderService;

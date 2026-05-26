@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class OrderScreen {
 
-    private ChickenService chickenService = new ChickenService();
-    private OrderService orderService = new OrderService(chickenService);
+    private final ChickenService chickenService = new ChickenService();
+    private final OrderService orderService = new OrderService(chickenService);
 
     Scanner myScanner = new Scanner(System.in);
 

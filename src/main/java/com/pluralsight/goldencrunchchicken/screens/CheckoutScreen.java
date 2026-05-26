@@ -13,8 +13,8 @@ public class CheckoutScreen {
 
     Scanner myScanner = new Scanner(System.in);
 
-    private OrderService orderService;
-    private ChickenService chickenService;
+    private final OrderService orderService;
+    private final ChickenService chickenService;
 
     public CheckoutScreen(OrderService orderService, ChickenService chickenService) {
         this.orderService = orderService;

@@ -18,7 +18,7 @@ public class ChickenBuilderScreen {
 
     Scanner myScanner = new Scanner(System.in);
 
-    private OrderService orderService;
+    private final OrderService orderService;
 
     public ChickenBuilderScreen(OrderService orderService) {
         this.orderService = orderService;
@@ -140,8 +140,8 @@ public class ChickenBuilderScreen {
             // While loop and switch for premium toppings so user can choose multiple times
             while (isChoosingPrem) {
 
-                System.out.println(TextFormatter.bold(TextFormatter.green("Press 0 when finished")));
-                System.out.print(TextFormatter.bold(TextFormatter.cyan("[4 MAX TOPPINGS] What premium toppings would you like [1-4]: ")));
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("[4 MAX TOPPINGS] What premium toppings would you like [1-4] "
+                        + TextFormatter.bold(TextFormatter.green("Press 0 when finished: ")))));
                 String userPremToppings = myScanner.nextLine().toUpperCase().trim();
 
                 switch (userPremToppings) {
@@ -154,9 +154,9 @@ public class ChickenBuilderScreen {
                 }
 
                 // Topping counter increments if not case 0 or default
-                if (!userPremToppings.equals("0") && !chicken.getToppings().isEmpty()) {
+                if (chicken.getToppings().size() > toppingCounter) {
                     toppingCounter += 1;
-                    if (toppingCounter >= 4) {
+                    if (toppingCounter > 4) {
                         System.out.println(TextFormatter.bold(TextFormatter.red("\nYou cannot have more than 4 toppings on your chicken.")));
                         isChoosingPrem = false;
                     }
@@ -181,8 +181,9 @@ public class ChickenBuilderScreen {
             // While loop and switch for regular toppings
             while (isChoosingReg) {
 
-                System.out.println(TextFormatter.bold(TextFormatter.green("Press 0 when finished")));
-                System.out.print(TextFormatter.bold(TextFormatter.cyan("[4 MAX TOPPINGS] What regular toppings would you like [1-3]: ")));
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("[4 MAX TOPPINGS] What regular toppings would you like [1-3] "
+                        + TextFormatter.bold(TextFormatter.green("Press 0 when finished: ")))));
+
                 String userRegToppings = myScanner.nextLine().toUpperCase().trim();
 
                 switch (userRegToppings) {
@@ -193,9 +194,9 @@ public class ChickenBuilderScreen {
                     default -> System.out.println(TextFormatter.bold(TextFormatter.red("\nWe don't offer that topping. Please try again.\n")));
                 }
 
-                if (!userRegToppings.equals("0") && !chicken.getToppings().isEmpty()) {
+                if (chicken.getToppings().size() > toppingCounter) {
                     toppingCounter += 1;
-                    if (toppingCounter >= 4) {
+                    if (toppingCounter > 4) {
                         System.out.println(TextFormatter.bold(TextFormatter.red("\nYou cannot have more than 4 toppings on your chicken.")));
                         isChoosingReg = false;
                     }
@@ -223,8 +224,8 @@ public class ChickenBuilderScreen {
             // Time to choose sauces, while loop for choosing sauces
             while (isChoosingSauce) {
 
-                System.out.println(TextFormatter.bold(TextFormatter.green("Press 0 when finished")));
-                System.out.print(TextFormatter.bold(TextFormatter.cyan("[2 MAX SAUCES] What sauces would like on your chicken [1-7]: ")));
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("[2 MAX SAUCES] What sauces would like on your chicken [1-7] "
+                        + TextFormatter.bold(TextFormatter.green("Press 0 when finished: ")))));
                 String userSauce = myScanner.nextLine().toUpperCase().trim();
 
                 switch (userSauce) {
@@ -238,36 +239,66 @@ public class ChickenBuilderScreen {
                     case "0" -> isChoosingSauce = false;
                     default -> System.out.println(TextFormatter.bold(TextFormatter.red("\nWe don't offer that sauce. Please try again.\n")));
                 }
-                if (!userSauce.equals("0") && !chicken.getSauces().isEmpty()) {
+                if (chicken.getSauces().size() > sauceCounter) {
                     sauceCounter += 1;
-                    if (sauceCounter >= 2) {
+                    if (sauceCounter > 2) {
                         System.out.println(TextFormatter.bold(TextFormatter.red("\nYou cannot have more than 2 sauces for your chicken.")));
                         isChoosingSauce = false;
                     }
                 }
             }
 
-            // Asks user whether they would like chicken tossed in sauce or not
-            System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWould you like your chicken tossed in sauce or have it on the side? (Y/N) ")));
-            String userToss = myScanner.nextLine();
+            boolean isUserToss = false;
+            while(!isUserToss) {
 
-            chicken.setTossedInSauce(userToss.equalsIgnoreCase("y"));
+                // Asks user whether they would like chicken tossed in sauce or not
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWould you like your chicken tossed in sauce or have it on the side? (Y/N) ")));
+                String userToss = myScanner.nextLine();
 
-            // Created a special option for the chicken, 0.50 for all chicken cuts
-            System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWould you like to upgrade to our special Golden Glaze today? (+0.50) (Y/N) ")));
-            String userSpecial = myScanner.nextLine();
+                if (userToss.equalsIgnoreCase("y")) {
+                    chicken.setTossedInSauce(true);
+                    System.out.println(TextFormatter.bold(TextFormatter.green("\nYou've chosen to toss your chicken in sauce!")));
+                    isUserToss = true;
+                } else if (userToss.equalsIgnoreCase("n")) {
+                    chicken.setTossedInSauce(false);
+                    System.out.println(TextFormatter.bold(TextFormatter.green("\nYou've chosen to have your sauce on the side!")));
+                    isUserToss = true;
+                } else {
+                    System.out.println(TextFormatter.bold(TextFormatter.red("Invalid choice. Please try again.")));
+                }
+            }
 
-            if (userSpecial.equalsIgnoreCase("y")) {
+            boolean isUserSpecial = false;
+            while(!isUserSpecial) {
+                // Created a special option for the chicken, 0.50 for all chicken cuts
+                System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWould you like to upgrade to our special Golden Glaze today? (+0.50) (Y/N) ")));
+                String userSpecial = myScanner.nextLine();
 
-                Toppings specialTopping = new Toppings();
+                if (userSpecial.equalsIgnoreCase("y")) {
 
-                specialTopping.setToppingName("GOLDEN GLAZE");
-                specialTopping.setToppingType(ToppingType.PREMIUM);
-                specialTopping.setPriceWings(BigDecimal.valueOf(0.50));
-                specialTopping.setPriceDrumsticks(BigDecimal.valueOf(0.50));
-                specialTopping.setPriceBoneless(BigDecimal.valueOf(0.50));
-                specialTopping.setPriceWhole(BigDecimal.valueOf(0.50));
-                chicken.getToppings().add(specialTopping);
+                    Toppings specialTopping = new Toppings();
+
+                    specialTopping.setToppingName("GOLDEN GLAZE");
+                    specialTopping.setToppingType(ToppingType.PREMIUM);
+                    specialTopping.setPriceWings(BigDecimal.valueOf(0.50));
+                    specialTopping.setPriceDrumsticks(BigDecimal.valueOf(0.50));
+                    specialTopping.setPriceBoneless(BigDecimal.valueOf(0.50));
+                    specialTopping.setPriceWhole(BigDecimal.valueOf(0.50));
+                    chicken.getToppings().add(specialTopping);
+
+                    System.out.println(TextFormatter.bold(TextFormatter.green("\nYou've chosen to upgrade to our special!")));
+
+                    isUserSpecial = true;
+                }
+                else if (userSpecial.equalsIgnoreCase("n")) {
+
+                    System.out.println(TextFormatter.bold(TextFormatter.green("\nNo upgrade today, maybe next time!")));
+
+                    isUserSpecial = true;
+                }
+                else {
+                    System.out.println(TextFormatter.bold(TextFormatter.red("Invalid choice. Please try again.")));
+                }
             }
 
             chickenOrder = orderService.addChickenToOrder(chickenOrder.getOrderId(), chicken);
@@ -287,7 +318,7 @@ public class ChickenBuilderScreen {
                     validChoice = true;
                 }
                 else {
-                    System.out.println(TextFormatter.bold(TextFormatter.red("\nPleae enter Y or N.")));
+                    System.out.println(TextFormatter.bold(TextFormatter.red("\nPlease enter Y or N.")));
                 }
             }
         }

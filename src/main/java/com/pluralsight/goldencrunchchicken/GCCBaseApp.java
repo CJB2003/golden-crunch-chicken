@@ -1,11 +1,10 @@
 package com.pluralsight.goldencrunchchicken;
 
-import com.pluralsight.goldencrunchchicken.screens.HomeScreen;
+import static com.pluralsight.goldencrunchchicken.screens.HomeScreen.displayHomeScreen;
 
 public class GCCBaseApp {
     public static void main(String[] args) {
 
-        HomeScreen homeScreen = new HomeScreen();
-        homeScreen.displayHomeScreen();
+        displayHomeScreen();
     }
 }
