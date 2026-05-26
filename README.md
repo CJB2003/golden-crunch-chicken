@@ -71,15 +71,15 @@ Flavors: Boba Tea · Iced Tea · Banana Milk · Coke · Sprite · Milkis · Dr. 
 ```
 golden-crunch-chicken/
 ├── src/main/java/com/yearupunited/goldencrunchchicken/
-│   ├── cli/
-│   │   ├── GCCBaseApp.java
-│   │   └── screens/
-│   │       ├── HomeScreen.java
-│   │       ├── OrderScreen.java
-│   │       ├── ChickenBuilderScreen.java
-│   │       ├── DrinkScreen.java
-│   │       ├── SideScreen.java
-│   │       └── CheckoutScreen.java
+│   |
+│   ├── GCCBaseApp.java
+│   ├── screens/
+│   │   ├── HomeScreen.java
+│   │   ├── OrderScreen.java
+│   │   ├── ChickenBuilderScreen.java
+│   │   ├── DrinkScreen.java
+│   │   ├── SideScreen.java
+│   │   └── CheckoutScreen.java
 │   ├── model/
 │   │   ├── Chicken.java
 │   │   ├── Order.java
