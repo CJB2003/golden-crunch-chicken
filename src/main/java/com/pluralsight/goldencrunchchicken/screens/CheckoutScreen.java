@@ -50,7 +50,7 @@ public class CheckoutScreen {
         }
 
         BigDecimal orderTotal = orderService.calculateOrderPrice(order.getOrderId());
-        System.out.println(TextFormatter.gold("\nTOTAL: $" + String.format("%.2f", orderTotal)));
+        System.out.println(TextFormatter.bold(TextFormatter.gold("\nTOTAL: $" + String.format("%.2f", orderTotal))));
 
         System.out.println(TextFormatter.bold(TextFormatter.gold(
                 """
@@ -67,7 +67,7 @@ public class CheckoutScreen {
             Receipt receipt = orderService.checkout(order.getOrderId());
 
             if (receipt != null) {
-                System.out.println(TextFormatter.bold(TextFormatter.cyan("Receipt saved: " + receipt.getFilename())));
+                System.out.println(TextFormatter.bold(TextFormatter.green("Receipt saved: " + receipt.getFilename())));
             }
             else {
                 System.out.println(TextFormatter.bold(TextFormatter.red("Receipt could not be saved.")));

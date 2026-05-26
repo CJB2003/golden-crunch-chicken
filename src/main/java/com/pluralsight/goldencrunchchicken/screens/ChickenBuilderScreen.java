@@ -38,6 +38,7 @@ public class ChickenBuilderScreen {
                             \n
                             _________________________________________________________________
                             ||                     CHICKEN BUILDER MENU                    ||
+                            ||                     (8 PIECES PER ORDER)                    ||
                             ||=============================================================||
                             || [1. WINGS] [2. DRUMSTICKS] [3. BONELESS] [4. WHOLE CHICKEN] ||
                             ||    $8.99        $9.99         $10.50           $20.00       ||
@@ -270,6 +271,7 @@ public class ChickenBuilderScreen {
 
             boolean isUserSpecial = false;
             while(!isUserSpecial) {
+
                 // Created a special option for the chicken, 0.50 for all chicken cuts
                 System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWould you like to upgrade to our special Golden Glaze today? (+0.50) (Y/N) ")));
                 String userSpecial = myScanner.nextLine();

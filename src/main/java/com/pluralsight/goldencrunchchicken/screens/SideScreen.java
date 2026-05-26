@@ -77,6 +77,9 @@ public class SideScreen {
                 }
             }
 
+            System.out.println(TextFormatter.bold(TextFormatter.green("\nSuccessfully added [" + sides.getSideType() + "] to checkout."
+                    + "\nPrice: $" + String.format("%.2f", sides.getSidePrice()))));
+
             sideOrder = orderService.addSideToOrder(sideOrder.getOrderId(), sides);
 
             boolean validChoice = false;

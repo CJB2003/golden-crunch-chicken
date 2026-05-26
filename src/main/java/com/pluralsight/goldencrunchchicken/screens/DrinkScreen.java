@@ -125,6 +125,10 @@ public class DrinkScreen {
                 }
             }
 
+            System.out.println(TextFormatter.bold(TextFormatter.green("\nSuccessfully added [" + drink.getDrinkSize()
+                    + " " + drink.getDrinkFlavor()) + "] to checkout."
+                    + "\nPrice: $" + String.format("%.2f", drink.getDrinkPrice())));
+
             drinkOrder = orderService.addDrinkToOrder(drinkOrder.getOrderId(), drink);
 
             boolean validChoice = false;
