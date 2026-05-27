@@ -13,7 +13,7 @@ spring:
     show-sql: true
 
   main:
-    web-application-type: none
+    web-application-type: servlet
 
 jwt:
   secret: ASuperLongSecretPasswordThatCantBeHacked
