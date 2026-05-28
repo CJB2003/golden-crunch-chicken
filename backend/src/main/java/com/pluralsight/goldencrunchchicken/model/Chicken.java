@@ -73,6 +73,6 @@ public class Chicken {
         return "Type of cut: " + chickenCut.toString().replace("_", " ")
                 + "\nToppings: " + toppingStuff
                 + "\nPrep style: " + prepStyle.toString().replace("_", " ")
-                + "\n" + (tossedInSauce ? "[Tossed in sauce]" : "[Sauce on side]");
+                + "\n" + (tossedInSauce ? "[Tossed in sauce]" : "[Sauce on side]");w
     }
 }

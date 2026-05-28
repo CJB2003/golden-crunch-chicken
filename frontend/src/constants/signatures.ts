@@ -72,7 +72,7 @@ export const SIGNATURE_COMBOS: SignatureCombo[] = [
   },
   {
     id: "honey-glaze-box",
-    name: "Honey Glaze Box ✨",
+    name: "Honey Glaze Box",
     description:
       "Whole chicken, original crispy, honey butter & Korean BBQ, golden glaze with scallions",
     fixedPrice: 24.99,
@@ -89,7 +89,7 @@ export const SIGNATURE_COMBOS: SignatureCombo[] = [
           priceWhole: 0,
         },
         {
-          toppingName: "Golden Glaze ✨",
+          toppingName: "Golden Glaze",
           toppingType: "PREMIUM",
           priceWings: 0.50,
           priceDrumsticks: 0.50,

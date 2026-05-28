@@ -51,7 +51,7 @@ function HomePage() {
     <div className="page home-page">
       <div className="hero">
         <p className="korean-name">구롱 크런치</p>
-        <h1 className="brand-title">🍗 Golden Crunch Chicken</h1>
+        <h1 className="brand-title">Golden Crunch Chicken</h1>
         <p className="tagline">Double-fried. Perfectly glazed. Golden every time.</p>
 
         <button

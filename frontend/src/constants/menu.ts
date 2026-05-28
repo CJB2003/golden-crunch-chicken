@@ -89,7 +89,7 @@ export const REGULAR_TOPPINGS: Toppings[] = [
 
 // GOLDEN GLAZE
 export const GOLDEN_GLAZE: Toppings = {
-  toppingName: "Golden Glaze ✨",
+  toppingName: "Golden Glaze",
   toppingType: "PREMIUM",
   priceWings: 0.50,
   priceDrumsticks: 0.50,
@@ -108,7 +108,7 @@ export const SAUCES: { value: SauceType; label: string }[] = [
   { value: "HOT_SPICY", label: "Hot Spicy" },
 ];
 
-// DRINKS
+// FLAVORS
 export const DRINK_FLAVORS: string[] = [
   "Boba Tea",
   "Iced Tea",
@@ -121,13 +121,14 @@ export const DRINK_FLAVORS: string[] = [
   "Water",
 ];
 
+// SIZES
 export const DRINK_SIZES: { value: DrinkSize; label: string; price: number }[] = [
   { value: "SMALL", label: "Small", price: 2.00 },
   { value: "MEDIUM", label: "Medium", price: 2.50 },
   { value: "LARGE", label: "Large", price: 3.00 },
 ];
 
-// ==================== SIDES ====================
+// Sides menu
 export const SIDES_MENU: { value: SideType; label: string; price: number }[] = [
   { value: "TTEOKBOKKI", label: "Tteokbokki", price: 5.00 },
   { value: "CHEESE_BALLS", label: "Cheese Balls", price: 4.00 },
