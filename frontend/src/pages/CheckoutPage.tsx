@@ -67,7 +67,7 @@ function CheckoutPage() {
           <div key={`chicken-${idx}`} className="checkout-item">
             <div>
               <p className="item-name">
-                🍗 {chicken.chickenCut.replace("_", " ")} / {chicken.prepStyle.replace("_", " ")}
+                {chicken.chickenCut.replace("_", " ")} / {chicken.prepStyle.replace("_", " ")}
               </p>
               {chicken.sauces.length > 0 && (
                 <p className="item-detail">

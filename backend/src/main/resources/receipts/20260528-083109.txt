@@ -1,0 +1,83 @@
+Golden Crunch Chicken
+----------------------
+05/28/2026 08:31 AM
+
+Type of cut: BONELESS
+Toppings: Jalapeños, Cheese Powder [PREMIUM], Golden Glaze [PREMIUM]
+Prep style: ORIGINAL CRISPY
+[Tossed in sauce]
+Price of Chicken: $13.50
+
+Type of cut: WINGS
+Toppings: Sesame Seeds, Cheese Powder [PREMIUM], Golden Glaze [PREMIUM]
+Prep style: ORIGINAL CRISPY
+[Tossed in sauce]
+Price of Chicken: $10.49
+
+Type of cut: WINGS
+Toppings: Cheese Powder [PREMIUM], Sesame Seeds
+Prep style: ORIGINAL CRISPY
+[Tossed in sauce]
+Price of Chicken: $9.74
+
+Type of cut: WINGS
+Toppings: Sesame Seeds, Cheese Powder [PREMIUM]
+Prep style: ORIGINAL CRISPY
+[Tossed in sauce]
+Price of Chicken: $9.74
+
+Type of cut: WINGS
+Toppings: Bonito Flakes [PREMIUM], Sesame Seeds, Golden Glaze [PREMIUM]
+Prep style: ORIGINAL CRISPY
+[Tossed in sauce]
+Price of Chicken: $10.49
+
+Type of cut: WINGS
+Toppings: Sesame Seeds, Cheese Powder [PREMIUM], Golden Glaze [PREMIUM]
+Prep style: ORIGINAL CRISPY
+[Tossed in sauce]
+Price of Chicken: $10.49
+
+Type of cut: WHOLE CHICKEN
+Toppings: Garlic Butter [PREMIUM], Sesame Seeds
+Prep style: ORIGINAL CRISPY
+[Tossed in sauce]
+Price of Chicken: $22.50
+
+Type of cut: WHOLE CHICKEN
+Toppings: Cheese Powder [PREMIUM], Sesame Seeds, Golden Glaze [PREMIUM]
+Prep style: ORIGINAL CRISPY
+[Tossed in sauce]
+Price of Chicken: $25.00
+
+Type of cut: WHOLE CHICKEN
+Toppings: Sesame Seeds, Bonito Flakes [PREMIUM], Golden Glaze [PREMIUM]
+Prep style: ORIGINAL CRISPY
+[Tossed in sauce]
+Price of Chicken: $25.00
+
+Type of cut: WHOLE CHICKEN
+Toppings: Cheese Powder [PREMIUM], Golden Glaze [PREMIUM]
+Prep style: ORIGINAL CRISPY
+[Tossed in sauce]
+Price of Chicken: $25.00
+
+MEDIUM WATER: $2.50
+
+MEDIUM COKE: $2.50
+
+MEDIUM COKE: $2.50
+
+MEDIUM BANANA MILK: $2.50
+
+MEDIUM DR. PEPPER: $2.50
+
+CHEESE BALLS: $4.00
+FRIES: $2.50
+KIMCHI: $0.50
+TTEOKBOKKI: $5.00
+CHEESE BALLS: $4.00
+KIMCHI: $0.50
+
+TOTAL: $190.95
+
