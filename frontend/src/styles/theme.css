@@ -1,0 +1,67 @@
+:root {
+  --color-background-primary: #0f0f14;
+  --color-background-secondary: #1a1a1a;
+  --color-background-tertiary: #22222e;
+
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #888888;
+
+  --color-gold: #C8860A;
+  --color-gold-soft: rgba(200, 134, 10, 0.25);
+
+  --color-border-tertiary: rgba(255, 255, 255, 0.08);
+
+  --border-radius-md: 10px;
+  --border-radius-lg: 16px;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  font-family: system-ui, sans-serif;
+}
+
+.signature-card {
+  background: var(--color-background-secondary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 16px;
+  transition: 0.2s ease;
+}
+
+.signature-card:hover {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 1px var(--color-gold-soft);
+}
+
+.primary-button {
+  background: var(--color-gold);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-md);
+  padding: 10px 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  filter: brightness(1.1);
+}
+
+.primary-button.large {
+  width: 100%;
+  padding: 14px;
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.signature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}

@@ -89,7 +89,7 @@ function OrderPage() {
         <p className="order-id">Order #{order.orderId}</p>
       </header>
 
-      {/* Summar of the order */}
+      {/* Summary of the order */}
       <div className="order-summary">
         {order.chickenItems.length === 0 &&
           order.drinks.length === 0 &&
@@ -169,7 +169,7 @@ function OrderPage() {
           order.sides.length === 0
         }
       >
-        Checkout — ${order.calculatedPrice.toFixed(2)}
+        Checkout — ${(order.calculatedPrice ?? 0).toFixed(2)}
       </button>
 
       {/* Drink picker */}
@@ -218,7 +218,7 @@ function OrderPage() {
         </div>
       )}
 
-      {/* ==================== SIDE PICKER MODAL ==================== */}
+      {/* Side Picker */}
       {showSidePicker && (
         <div className="modal-overlay" onClick={() => setShowSidePicker(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>

@@ -178,7 +178,7 @@ public class OrderService {
                     .append("\n")
                     .append(chicken.customizedChicken())
                     .append("\nPrice of Chicken: ")
-                    .append(chickenService.calculatedChickenPrice(chicken))
+                    .append(String.format("$%.2f", chickenService.calculatedChickenPrice(chicken)))
                     .append("\n");
         }
 

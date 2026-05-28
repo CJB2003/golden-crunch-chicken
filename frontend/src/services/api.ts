@@ -31,7 +31,7 @@ export const getOrder = async (orderId: number): Promise<Order> => {
 // Adds chicken to existing order
 export const addChickenToOrder = async (orderId: number, chicken: Chicken): Promise<Order> => {
 
-    const response = await api.post<Order>(`/order/${orderId}/chicken`, chicken);
+    const response = await api.post<Order>(`/orders/${orderId}/chicken`, chicken);
     return response.data;
     };
 

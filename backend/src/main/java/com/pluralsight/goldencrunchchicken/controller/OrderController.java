@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -53,10 +55,23 @@ public class OrderController {
     }
 
     @PutMapping("/{id}/checkout")
-    public ResponseEntity<Receipt> checkout(@PathVariable Long id) {
-
+    public ResponseEntity<Map<String, Object>> checkout(@PathVariable Long id) {
         Receipt receipt = orderService.checkout(id);
-        return ResponseEntity.ok(receipt);
+
+        if (receipt == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        String receiptText = orderService.receiptBuilder(
+                orderService.findById(id).orElseThrow(),
+                receipt.getTotalPrice()
+        );
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("receipt", receipt);
+        response.put("receiptText", receiptText);
+
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")

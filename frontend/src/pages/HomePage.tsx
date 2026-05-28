@@ -18,10 +18,12 @@ function HomePage() {
       const newOrder = await createOrder();
       setOrder(newOrder);
       navigate("/order");
+
     } catch (error) {
 
       console.error("Failed to create order:", error);
       alert("Could not start order. Make sure the backend is running.");
+
     } finally {
       setLoading(false);
     }

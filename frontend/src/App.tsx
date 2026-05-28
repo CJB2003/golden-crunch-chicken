@@ -5,7 +5,7 @@ import OrderPage from "./pages/OrderPage";
 import ChickenBuilderPage from "./pages/ChickenBuilderPage";
 import CheckoutPage from "./pages/CheckoutPage";
 
-// Wraps all pages in order provider
+// Wraps all the pages in OrderProvider
 function App() {
   return (
     <OrderProvider>
