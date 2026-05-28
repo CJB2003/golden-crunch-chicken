@@ -288,7 +288,7 @@ public class ChickenBuilderScreen {
                     specialTopping.setPriceWhole(BigDecimal.valueOf(0.50));
                     chicken.getToppings().add(specialTopping);
 
-                    System.out.println(TextFormatter.bold(TextFormatter.green("\nYou've chosen to upgrade to our special!")));
+                    System.out.println(TextFormatter.bold(TextFormatter.green("\nThank you for upgrading to our special!")));
 
                     isUserSpecial = true;
                 }

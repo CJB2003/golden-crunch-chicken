@@ -24,6 +24,7 @@ public class OrderScreen {
         DrinkScreen drinkScreen = new DrinkScreen(orderService);
         SideScreen sideScreen = new SideScreen(orderService);
         CheckoutScreen checkoutScreen = new CheckoutScreen(orderService, chickenService);
+        SignatureScreen signatureScreen = new SignatureScreen(orderService, chickenService);
 
         while (isOrderRunning) {
 
@@ -31,15 +32,16 @@ public class OrderScreen {
                     TextFormatter.bold(TextFormatter.gold(
                     """
                     \n
-                    _______________________
-                    ||   Ordering Menu   ||
-                    =======================
-                    || 1) Add Chicken    ||
-                    || 2) Add Drink      ||
-                    || 3) Add Side       ||
-                    || 4) Checkout       ||
-                    || 0) Cancel Order   ||
-                    =======================
+                    ________________________
+                    ||   Ordering Menu    ||
+                    ========================
+                    || 1) Add Chicken     ||
+                    || 2) Signature Items ||
+                    || 3) Add Drink       ||
+                    || 4) Add Side        ||
+                    || 5) Checkout        ||
+                    || 0) Cancel Order    ||
+                    ========================
                     """)
             ));
 
@@ -48,9 +50,10 @@ public class OrderScreen {
 
             switch (userChoice) {
                 case "1" -> order = chickenBuilder.displayChickenBuilder(order);
-                case "2" -> order = drinkScreen.displayDrinkScreen(order);
-                case "3" -> order = sideScreen.displaySideScreen(order);
-                case "4" -> {
+                case "2" ->
+                case "3" -> order = drinkScreen.displayDrinkScreen(order);
+                case "4" -> order = sideScreen.displaySideScreen(order);
+                case "5" -> {
                     checkoutScreen.displayCheckoutScreen(order);
                     isOrderRunning = false;
                 }
