@@ -38,7 +38,7 @@ public class ChickenBuilderScreen {
                             \n
                             _________________________________________________________________
                             ||                     CHICKEN BUILDER MENU                    ||
-                            ||                     (8 PIECES PER ORDER)                    ||
+                            ||     (8 PIECES PER ORDER FOR WINGS, DRUMSTICKS, BONELESS)    ||
                             ||=============================================================||
                             || [1. WINGS] [2. DRUMSTICKS] [3. BONELESS] [4. WHOLE CHICKEN] ||
                             ||    $8.99        $9.99         $10.50           $20.00       ||

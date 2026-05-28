@@ -1,15 +1,15 @@
 package com.pluralsight.goldencrunchchicken.screens;
 
-import com.pluralsight.goldencrunchchicken.model.Chicken;
-import com.pluralsight.goldencrunchchicken.model.Order;
-import com.pluralsight.goldencrunchchicken.model.Toppings;
-import com.pluralsight.goldencrunchchicken.model.enums.ChickenCut;
-import com.pluralsight.goldencrunchchicken.model.enums.PrepStyle;
+import com.pluralsight.goldencrunchchicken.model.*;
 import com.pluralsight.goldencrunchchicken.service.ChickenService;
 import com.pluralsight.goldencrunchchicken.service.OrderService;
 import com.pluralsight.goldencrunchchicken.util.TextFormatter;
 
+import java.util.Scanner;
+
 public class SignatureScreen {
+
+    Scanner myScanner = new Scanner(System.in);
 
     private OrderService orderService;
     private ChickenService chickenService;
@@ -19,25 +19,47 @@ public class SignatureScreen {
         this.chickenService = chickenService;
     }
 
-    public Order displaySignatureScreen(Order sigChickenOrder, Chicken chicken) {
+    public Order displaySignatureScreen(Order sigChickenOrder) {
 
-        System.out.println(TextFormatter.bold(TextFormatter.red(
+        System.out.println(
+                TextFormatter.bold(TextFormatter.gold(
                 """
-                __________________________
-                || 
-                """)));
+                ____________________________________
+                ||       SIGNATURE CHICKENS       ||
+                ||________________________________||
+                || 1) Seoul Classic - $14.50      ||
+                || 2) Spicy Fire Wings - $11.50   ||
+                || 3) Honey Glaze Wings - $24.99  ||
+                ||________________________________||
+                """)
+                )
+        );
 
-        sigChickenOrder = orderService.addChickenToOrder(sigChickenOrder.getOrderId(), chicken);
-    }
+        boolean isValid = false;
+        while(!isValid) {
 
-    public Chicken seoulClassic(String chickenName) {
+            System.out.print(TextFormatter.bold(TextFormatter.cyan("Selection: ")));
+            String userChoice = myScanner.nextLine();
 
-        Chicken seoulClassic = new Chicken();
-        Toppings seoulToppings = new Toppings();
-
-        seoulClassic.setChickenCut(ChickenCut.BONELESS);
-        seoulClassic.setPrepStyle(PrepStyle.ORIGINAL_CRISPY);
-        seoulToppings.setToppingName("Scallions");
-        seoulToppings.setToppingType();
+            switch (userChoice) {
+                case "1" -> {
+                    Chicken chicken = new SeoulClassic();
+                    sigChickenOrder = orderService.addChickenToOrder(sigChickenOrder.getOrderId(), chicken);
+                    isValid = true;
+                }
+                case "2" -> {
+                    Chicken chicken = new SpicyFireWings();
+                    sigChickenOrder = orderService.addChickenToOrder(sigChickenOrder.getOrderId(), chicken);
+                    isValid = true;
+                }
+                case "3" -> {
+                    Chicken chicken = new HoneyGlazeChicken();
+                    sigChickenOrder = orderService.addChickenToOrder(sigChickenOrder.getOrderId(), chicken);
+                    isValid = true;
+                }
+                default -> System.out.println(TextFormatter.bold(TextFormatter.red("Invalid choice. Try again.")));
+            }
+        }
+        return sigChickenOrder;
     }
 }

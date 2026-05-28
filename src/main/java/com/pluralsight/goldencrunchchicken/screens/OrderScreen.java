@@ -50,7 +50,7 @@ public class OrderScreen {
 
             switch (userChoice) {
                 case "1" -> order = chickenBuilder.displayChickenBuilder(order);
-                case "2" ->
+                case "2" -> order = signatureScreen.displaySignatureScreen(order);
                 case "3" -> order = drinkScreen.displayDrinkScreen(order);
                 case "4" -> order = sideScreen.displaySideScreen(order);
                 case "5" -> {
