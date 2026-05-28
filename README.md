@@ -179,6 +179,7 @@ On Windows:
 
 ---
 ## Diagram
-![Diagram](diagram/GoldenCrunchChicken.drawio.png)
+<img width="1231" height="1141" alt="GoldenCrunchChicken drawio" src="https://github.com/user-attachments/assets/54baf245-7b4f-4b82-a4af-fa3b769c15e6" />
 
-*Golden Crunch Chicken · Double-fried. Perfectly glazed. 🍗*
+
+*Made by Chris*
