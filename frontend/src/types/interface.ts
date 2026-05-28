@@ -1,3 +1,31 @@
+// Match union types to my Enums
+export type ChickenCut = "WINGS" | "DRUMSTICKS" | "BONELESS" | "WHOLE_CHICKEN";
+
+export type PrepStyle = "ORIGINAL_CRISPY" | "EXTRA_CRISPY" | "GRILLED";
+
+export type ToppingType = "REGULAR" | "PREMIUM";
+
+export type DrinkSize = "SMALL" | "MEDIUM" | "LARGE";
+
+export type SauceType =
+  | "SOY_GARLIC"
+  | "GANG_JEONG"
+  | "GALBI"
+  | "HONEY_BUTTER"
+  | "KOREAN_BBQ"
+  | "BULGOGI"
+  | "HOT_SPICY";
+
+export type SideType =
+  | "TTEOKBOKKI"
+  | "FRIES"
+  | "CHEESE_BALLS"
+  | "PICKLED_RADISH"
+  | "KIMCHI";
+
+export type OrderStatus = "ACTIVE" | "COMPLETED" | "CANCELLED";
+
+// Model interfaces that match my model classes
 export interface Toppings {
     toppingId: number;
     toppingName: string;
@@ -13,7 +41,6 @@ export interface Sauce {
     sauceType: string;
     }
 
-
 export interface Chicken {
     chickenId: number;
     chickenCut: string;
@@ -21,7 +48,7 @@ export interface Chicken {
     toppings: Toppings[];
     sauces: Sauce[];
     tossedInSauce: boolean;
-    }
+     }
 
 export interface Drink {
     drinkId: number;
@@ -53,3 +80,9 @@ export interface Receipt {
     receiptDate: string;
     totalPrice: number;
     }
+
+// Response from the checkout endpoint
+export interface CheckoutResponse {
+  receipt: Receipt;
+  receiptText: string;
+  }
