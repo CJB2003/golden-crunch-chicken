@@ -140,18 +140,20 @@ On Windows:
 
 ## How to Use
 
-```
-======================================
-|| Welcome to Golden Crunch Chicken ||
-======================================
-|| 1) New Order                     ||
-|| 0) Exit                          ||
-======================================
-```
+<img width="511" height="219" alt="Screenshot 2026-05-29 at 7 41 51 AM" src="https://github.com/user-attachments/assets/8ff028cd-69b1-4f48-b0f5-1a28412f0c3e" />
 
 1. Select **1) New Order** from the home screen
+---
+<img width="276" height="272" alt="Screenshot 2026-05-29 at 7 43 40 AM" src="https://github.com/user-attachments/assets/d7b4f9b7-757c-433c-b5c5-cd542b0ccfd1" />
+
 2. From the order menu, add chicken, drinks, and sides
-3. Select **4) Checkout** to review your order and confirm
+---
+<img width="481" height="294" alt="Screenshot 2026-05-29 at 7 45 22 AM" src="https://github.com/user-attachments/assets/6375ba52-6431-4988-abe5-4cb48a8538bc" />
+
+3. Select **5) Checkout** to review your order and confirm
+---
+<img width="456" height="322" alt="Screenshot 2026-05-29 at 7 46 10 AM" src="https://github.com/user-attachments/assets/f8ed1f1c-4310-47af-b17c-9cdbf5fbbc3d" />
+
 4. Your receipt is saved automatically to `receipts/`
 
 ---
