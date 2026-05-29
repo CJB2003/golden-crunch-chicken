@@ -102,7 +102,7 @@ public class DrinkScreen {
             while (!validSize) {
 
                 System.out.print(TextFormatter.bold(TextFormatter.cyan("\nSelect a size (SMALL, MEDIUM, OR LARGE): ")));
-                String userSize = myScanner.nextLine().toUpperCase().trim();
+                String userSize = myScanner.nextLine().trim();
 
                 // Sets size of drink as well as price
                 switch (userSize) {

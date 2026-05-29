@@ -54,7 +54,7 @@ public class ChickenBuilderScreen {
             while (!validCut) {
 
                 System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWhat cut of chicken would you like [1-4]: ")));
-                String userChickenCut = myScanner.nextLine().toUpperCase().trim();
+                String userChickenCut = myScanner.nextLine().trim();
 
                 switch (userChickenCut) {
                     case "1" -> {
@@ -98,7 +98,7 @@ public class ChickenBuilderScreen {
             while (!validPrep) {
 
                 System.out.print(TextFormatter.bold(TextFormatter.cyan("How would you like your chicken prepped (1-3): ")));
-                String userPrepStyle = myScanner.nextLine().toUpperCase().trim();
+                String userPrepStyle = myScanner.nextLine().trim();
 
                 switch (userPrepStyle) {
                     case "1" -> {
@@ -143,7 +143,7 @@ public class ChickenBuilderScreen {
 
                 System.out.print(TextFormatter.bold(TextFormatter.cyan("[4 MAX TOPPINGS] What premium toppings would you like [1-4] "
                         + TextFormatter.bold(TextFormatter.green("Press 0 when finished: ")))));
-                String userPremToppings = myScanner.nextLine().toUpperCase().trim();
+                String userPremToppings = myScanner.nextLine().trim();
 
                 switch (userPremToppings) {
                     case "1" -> chicken.getToppings().add(createPremiumTopping("BONITO FLAKES"));
@@ -185,7 +185,7 @@ public class ChickenBuilderScreen {
                 System.out.print(TextFormatter.bold(TextFormatter.cyan("[4 MAX TOPPINGS] What regular toppings would you like [1-3] "
                         + TextFormatter.bold(TextFormatter.green("Press 0 when finished: ")))));
 
-                String userRegToppings = myScanner.nextLine().toUpperCase().trim();
+                String userRegToppings = myScanner.nextLine().trim();
 
                 switch (userRegToppings) {
                     case "1" -> chicken.getToppings().add(createRegularTopping("SCALLIONS"));
@@ -227,7 +227,7 @@ public class ChickenBuilderScreen {
 
                 System.out.print(TextFormatter.bold(TextFormatter.cyan("[2 MAX SAUCES] What sauces would like on your chicken [1-7] "
                         + TextFormatter.bold(TextFormatter.green("Press 0 when finished: ")))));
-                String userSauce = myScanner.nextLine().toUpperCase().trim();
+                String userSauce = myScanner.nextLine().trim();
 
                 switch (userSauce) {
                     case "1" -> chicken.getSauces().add(createSauce(SauceType.SOY_GARLIC));
@@ -254,7 +254,7 @@ public class ChickenBuilderScreen {
 
                 // Asks user whether they would like chicken tossed in sauce or not
                 System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWould you like your chicken tossed in sauce or have it on the side? (Y/N) ")));
-                String userToss = myScanner.nextLine();
+                String userToss = myScanner.nextLine().trim();
 
                 if (userToss.equalsIgnoreCase("y")) {
                     chicken.setTossedInSauce(true);
@@ -274,7 +274,7 @@ public class ChickenBuilderScreen {
 
                 // Created a special option for the chicken, 0.50 for all chicken cuts
                 System.out.print(TextFormatter.bold(TextFormatter.cyan("\nWould you like to upgrade to our special Golden Glaze today? (+0.50) (Y/N) ")));
-                String userSpecial = myScanner.nextLine();
+                String userSpecial = myScanner.nextLine().trim();
 
                 if (userSpecial.equalsIgnoreCase("y")) {
 

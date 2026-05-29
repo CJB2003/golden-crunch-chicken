@@ -46,7 +46,7 @@ public class OrderScreen {
             ));
 
             System.out.print(TextFormatter.bold(TextFormatter.cyan("Selection: ")));
-            String userChoice = myScanner.nextLine();
+            String userChoice = myScanner.nextLine().trim();
 
             switch (userChoice) {
                 case "1" -> order = chickenBuilder.displayChickenBuilder(order);

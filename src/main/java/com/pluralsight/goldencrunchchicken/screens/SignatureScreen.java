@@ -38,7 +38,7 @@ public class SignatureScreen {
         boolean isValid = false;
         while(!isValid) {
 
-            System.out.print(TextFormatter.bold(TextFormatter.cyan("Selection: ")));
+            System.out.print(TextFormatter.bold(TextFormatter.cyan("Selection [1-3]: ")));
             String userChoice = myScanner.nextLine();
 
             switch (userChoice) {
@@ -57,7 +57,7 @@ public class SignatureScreen {
                     sigChickenOrder = orderService.addChickenToOrder(sigChickenOrder.getOrderId(), chicken);
                     isValid = true;
                 }
-                default -> System.out.println(TextFormatter.bold(TextFormatter.red("Invalid choice. Try again.")));
+                default -> System.out.println(TextFormatter.bold(TextFormatter.red("\nInvalid choice. Try again.\n")));
             }
         }
         return sigChickenOrder;

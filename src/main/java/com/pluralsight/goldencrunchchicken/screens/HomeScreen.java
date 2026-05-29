@@ -28,7 +28,7 @@ public class HomeScreen {
                     ))
             );
             System.out.print(TextFormatter.bold(TextFormatter.cyan("Selection: ")));
-            String userChoice = myScanner.nextLine();
+            String userChoice = myScanner.nextLine().trim();
 
             switch (userChoice) {
                 case "1" -> orderScreen.displayOrderScreen();
