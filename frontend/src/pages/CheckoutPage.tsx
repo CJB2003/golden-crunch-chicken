@@ -88,14 +88,14 @@ function CheckoutPage() {
 
         {order.drinks.map((drink, idx) => (
           <div key={`drink-${idx}`} className="checkout-item">
-            <p className="item-name">🥤 {drink.drinkSize} {drink.drinkFlavor}</p>
+            <p className="item-name">음료 {drink.drinkSize} {drink.drinkFlavor}</p>
             <p className="item-price">${drink.drinkPrice.toFixed(2)}</p>
           </div>
         ))}
 
         {order.sides.map((side, idx) => (
           <div key={`side-${idx}`} className="checkout-item">
-            <p className="item-name">🥡 {side.sideType.replace("_", " ")}</p>
+            <p className="item-name">사이드 {side.sideType.replace("_", " ")}</p>
             <p className="item-price">${side.sidePrice.toFixed(2)}</p>
           </div>
         ))}

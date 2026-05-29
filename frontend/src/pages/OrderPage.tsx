@@ -11,7 +11,12 @@ import {
   DRINK_SIZES,
   SIDES_MENU,
 } from "../constants/menu";
-import type { Drink, Sides, DrinkSize, SideType } from "../types";
+import type {
+    Drink,
+    Sides,
+    DrinkSize,
+    SideType,
+} from "../types";
 
 function OrderPage() {
   const navigate = useNavigate();
@@ -100,7 +105,7 @@ function OrderPage() {
         {order.chickenItems.map((chicken, idx) => (
           <div key={`chicken-${idx}`} className="order-item">
             <p className="item-name">
-              🍗 {chicken.chickenCut.replace("_", " ")} / {chicken.prepStyle.replace("_", " ")}
+               닭 {chicken.chickenCut.replace("_", " ")} / {chicken.prepStyle.replace("_", " ")}
             </p>
             {chicken.sauces.length > 0 && (
               <p className="item-detail">
@@ -121,7 +126,7 @@ function OrderPage() {
         {order.drinks.map((drink, idx) => (
           <div key={`drink-${idx}`} className="order-item">
             <p className="item-name">
-              🥤 {drink.drinkSize} {drink.drinkFlavor}
+              음료 {drink.drinkSize} {drink.drinkFlavor}
             </p>
             <p className="item-price">${drink.drinkPrice.toFixed(2)}</p>
           </div>
@@ -130,7 +135,7 @@ function OrderPage() {
         {order.sides.map((side, idx) => (
           <div key={`side-${idx}`} className="order-item">
             <p className="item-name">
-              🥡 {side.sideType.replace("_", " ")}
+              사이드 {side.sideType.replace("_", " ")}
             </p>
             <p className="item-price">${side.sidePrice.toFixed(2)}</p>
           </div>

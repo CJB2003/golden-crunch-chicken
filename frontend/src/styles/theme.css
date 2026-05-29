@@ -439,7 +439,7 @@ button {
   margin-top: 14px;
 }
 
-/* Cut cards */
+/* Cut cards, when hovering, when selected */
 .card-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
