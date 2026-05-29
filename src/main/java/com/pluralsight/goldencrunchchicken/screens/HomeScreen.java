@@ -17,12 +17,13 @@ public class HomeScreen {
             System.out.println(
                     TextFormatter.bold(TextFormatter.gold(
                             """
-                                    ______________________________________
-                                    || Welcome to Golden Crunch Chicken ||
-                                    ||----------------------------------||
-                                    || 1) New Order                     ||
-                                    || 0) Exit                          ||
-                                    ||__________________________________||
+                                    ________________________________________________________
+                                    ||          Welcome to Golden Crunch Chicken          ||
+                                    || Double-fried. Perfectly glazed. Golden every time. ||
+                                    ||----------------------------------------------------||
+                                    || 1) New Order                                       ||
+                                    || 0) Exit                                            ||
+                                    ||____________________________________________________||
                                     """
                     ))
             );
