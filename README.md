@@ -70,7 +70,7 @@ Flavors: Boba Tea · Iced Tea · Banana Milk · Coke · Sprite · Milkis · Dr. 
 
 ```
 golden-crunch-chicken/
-├── src/main/java/com/yearupunited/goldencrunchchicken/
+├── src/main/java/com/pluralsight/goldencrunchchicken/
 │   |
 │   ├── GCCBaseApp.java
 │   ├── screens/
