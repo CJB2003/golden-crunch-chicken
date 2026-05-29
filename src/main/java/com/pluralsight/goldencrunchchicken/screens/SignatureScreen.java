@@ -11,8 +11,8 @@ public class SignatureScreen {
 
     Scanner myScanner = new Scanner(System.in);
 
-    private OrderService orderService;
-    private ChickenService chickenService;
+    private final OrderService orderService;
+    private final ChickenService chickenService;
 
     public SignatureScreen(OrderService orderService, ChickenService chickenService) {
         this.orderService = orderService;

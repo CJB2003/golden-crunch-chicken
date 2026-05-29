@@ -126,8 +126,8 @@ public class DrinkScreen {
             }
 
             System.out.println(TextFormatter.bold(TextFormatter.green("\nSuccessfully added [" + drink.getDrinkSize()
-                    + " " + drink.getDrinkFlavor()) + "] to checkout."
-                    + "\nPrice: $" + String.format("%.2f", drink.getDrinkPrice())));
+                    + " " + drink.getDrinkFlavor()) + TextFormatter.bold(TextFormatter.green("] to checkout."))
+                    + TextFormatter.bold(TextFormatter.green("\nPrice: $" + String.format("%.2f", drink.getDrinkPrice())))));
 
             drinkOrder = orderService.addDrinkToOrder(drinkOrder.getOrderId(), drink);
 

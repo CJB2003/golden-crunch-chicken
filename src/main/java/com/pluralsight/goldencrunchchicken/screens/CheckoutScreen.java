@@ -5,6 +5,7 @@ import com.pluralsight.goldencrunchchicken.model.*;
 import com.pluralsight.goldencrunchchicken.service.ChickenService;
 import com.pluralsight.goldencrunchchicken.service.OrderService;
 import com.pluralsight.goldencrunchchicken.util.TextFormatter;
+import org.w3c.dom.Text;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
@@ -59,24 +60,31 @@ public class CheckoutScreen {
                 """
         )));
 
-        System.out.print(TextFormatter.bold(TextFormatter.cyan("Selection (1 or 0): ")));
-        String userChoice = myScanner.nextLine();
+        boolean isValid = false;
 
-        // Stores receipt and prints out filename of receipt, added input validation
-        if (userChoice.equalsIgnoreCase("1")) {
-            Receipt receipt = orderService.checkout(order.getOrderId());
+        while(!isValid) {
+            System.out.print(TextFormatter.bold(TextFormatter.cyan("Selection (1 or 0): ")));
+            String userChoice = myScanner.nextLine();
 
-            if (receipt != null) {
-                System.out.println(TextFormatter.bold(TextFormatter.green("Receipt saved: " + receipt.getFilename())));
+            // Stores receipt and prints out filename of receipt, added input validation
+            if (userChoice.equalsIgnoreCase("1")) {
+                Receipt receipt = orderService.checkout(order.getOrderId());
+
+                if (receipt != null) {
+                    System.out.println(TextFormatter.bold(TextFormatter.green("Receipt saved: " + receipt.getFilename())));
+                } else {
+                    System.out.println(TextFormatter.bold(TextFormatter.red("Receipt could not be saved.")));
+                }
+                isValid = true;
             }
-            else {
-                System.out.println(TextFormatter.bold(TextFormatter.red("Receipt could not be saved.")));
+            // Cancels and removes order
+            else if (userChoice.equalsIgnoreCase("0")) {
+                orderService.cancelOrder(order.getOrderId());
+                System.out.println(TextFormatter.bold(TextFormatter.red("\nOrder has been cancelled.")));
+                isValid = true;
+            } else {
+                System.out.println(TextFormatter.bold(TextFormatter.red("\nInvalid selection. Please select 1 or 0.\n")));
             }
-        }
-        // Cancels and removes order
-        else {
-            orderService.cancelOrder(order.getOrderId());
-            System.out.println(TextFormatter.bold(TextFormatter.red("Order has been cancelled.")));
         }
     }
 }

@@ -34,14 +34,14 @@ public class OrderScreen {
                     \n
                     ________________________
                     ||   Ordering Menu    ||
-                    ========================
+                    ||--------------------||
                     || 1) Add Chicken     ||
                     || 2) Signature Items ||
                     || 3) Add Drink       ||
                     || 4) Add Side        ||
                     || 5) Checkout        ||
                     || 0) Cancel Order    ||
-                    ========================
+                    ||____________________||
                     """)
             ));
 
